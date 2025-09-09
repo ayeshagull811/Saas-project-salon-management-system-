@@ -1,0 +1,34 @@
+import axios from "axios";
+
+const API_URL = "http://localhost:8000/category";
+
+export const getCategories = async (salonId) => {
+  const res = await axios.get(`${API_URL}/getcategory/${salonId}`);
+  return res.data;
+};
+
+// ✅ Create category
+export const createCategory = async (data) => {
+  const res = await axios.post(`${API_URL}/createcategory`, data,{
+    headers: { "Content-Type": "application/json" }
+  });
+  return res.data;
+};
+
+// ✅ Update category
+export const updateCategory = async (id, data) => {
+  const res = await axios.put(`${API_URL}/updatecategory/${id}`, data);
+  return res.data;
+};
+
+// ✅ Delete category
+export const deleteCategory = async (id) => {
+  const res = await axios.delete(`${API_URL}/deletedcategory/${id}`);
+  return res.data;
+};
+
+// ✅ Toggle active/inactive
+export const toggleCategoryStatus = async (id) => {
+  const res = await axios.patch(`${API_URL}/${id}/toggle`);
+  return res.data;
+};
