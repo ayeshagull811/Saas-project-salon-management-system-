@@ -12,8 +12,11 @@ const nextConfig = {
   },
   experimental: {
     optimizeCss: false, // disable lightningcss
-    // turbo: false, // agar TurboPack disable karna ho toh uncomment karo
   },
+  // Agar turbopack disable karna ho:
+  // experimental: {
+  //   turbo: false,
+  // },
 };
 
 export default nextConfig;
