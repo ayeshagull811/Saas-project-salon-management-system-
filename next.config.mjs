@@ -8,7 +8,11 @@ const nextConfig = {
         hostname: "beautycastleparlour.com",
         pathname: "/uploads/**",
       },
+      
     ],
+     experimental: {
+    optimizeCss: false, // disable lightningcss
+  },
   },
   // Turbopack ko disable karke Webpack use karne ke liye
   // experimental: {
