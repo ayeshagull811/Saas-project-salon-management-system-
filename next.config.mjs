@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    unoptimized: true,
     domains: ["encrypted-tbn0.gstatic.com"],
     remotePatterns: [
       {
