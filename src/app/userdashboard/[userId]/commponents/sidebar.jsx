@@ -22,6 +22,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 
 export default function Sidebar() {
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const { userId, salonId } = useParams();
   const [isOpen, setIsOpen] = useState(true);
   const [expandedMenus, setExpandedMenus] = useState({});
@@ -34,6 +35,18 @@ export default function Sidebar() {
       [menuKey]: !prev[menuKey],
     }));
   };
+  // Inside Sidebar component
+
+  const handleLogout = () => {
+    // Clear user session/local storage
+    localStorage.removeItem("user");
+
+    // Optionally clear other stored data if needed
+    // localStorage.clear();
+
+    // Redirect to login page
+    window.location.href = "/login"; // replace with your login route
+  };
 
   const handleItemClick = (itemKey) => {
     setActiveItem(itemKey);
@@ -42,7 +55,7 @@ export default function Sidebar() {
   // 🔹 Menu Items
   const menuItems = [
     {
-       name: "User Dashboard",
+      name: "User Dashboard",
       icon: LayoutDashboard,
       path: `/userdashboard/${userId}`,
       key: "user-dashboard",
@@ -52,6 +65,18 @@ export default function Sidebar() {
       icon: Home,
       path: `/userdashboard/${userId}/salons/${salonId}`,
       key: "dashboard",
+    },
+    {
+      name: "Roles",
+      icon: Users,
+      path: `/userdashboard/${userId}/salons/${salonId}/roles`,
+      key: "roles",
+    },
+    {
+      name: "Admin",
+      icon: User,
+      path: `/userdashboard/${userId}/salons/${salonId}/adminForm`,
+      key: "admin",
     },
     {
       name: "Appointments",
@@ -100,32 +125,32 @@ export default function Sidebar() {
           path: `/userdashboard/${userId}/salons/${salonId}/staff/add`,
           key: "add-staff",
         },
-        {
-          name: "Staff Schedule",
-          path: `/userdashboard/${userId}/salons/${salonId}/staff/schedule`,
-          key: "staff-schedule",
-        },
+        // {
+        //   name: "Staff Schedule",
+        //   path: `/userdashboard/${userId}/salons/${salonId}/staff/schedule`,
+        //   key: "staff-schedule",
+        // },
       ],
     },
-    {
-      name: "Customers",
-      icon: User,
-      path: `/userdashboard/${userId}/salons/${salonId}/customers`,
-      key: "customers",
-      hasSubmenu: true,
-      submenu: [
-        {
-          name: "All Customers",
-          path: `/userdashboard/${userId}/salons/${salonId}/customers/all`,
-          key: "all-customers",
-        },
-        {
-          name: "Customer History",
-          path: `/userdashboard/${userId}/salons/${salonId}/customers/history`,
-          key: "customer-history",
-        },
-      ],
-    },
+    // {
+    //   name: "Customers",
+    //   icon: User,
+    //   path: `/userdashboard/${userId}/salons/${salonId}/customers`,
+    //   key: "customers",
+    //   hasSubmenu: true,
+    //   submenu: [
+    //     {
+    //       name: "All Customers",
+    //       path: `/userdashboard/${userId}/salons/${salonId}/customers/all`,
+    //       key: "all-customers",
+    //     },
+    //     {
+    //       name: "Customer History",
+    //       path: `/userdashboard/${userId}/salons/${salonId}/customers/history`,
+    //       key: "customer-history",
+    //     },
+    //   ],
+    // },
     {
       name: "Inventory",
       icon: Package,
@@ -227,26 +252,41 @@ export default function Sidebar() {
         {/* Menu Items */}
         <nav className="flex-1 p-2 overflow-y-auto">
           {!salonId ? (
-  <div className="flex flex-col gap-4 text-sm">
-    {/* User Dashboard Icon */}
-    <Link
-      href={`/userdashboard/${userId}`}
+            <div className="flex flex-col gap-4 text-sm">
+              {/* User Dashboard Icon */}
+              <Link
+                href={`/userdashboard/${userId}`}
+                className="flex items-center gap-4 p-2 rounded-lg hover:bg-[#926848] transition-colors duration-200"
+                onClick={() => handleItemClick("user-dashboard")}
+              >
+                <LayoutDashboard size={20} />
+                {isOpen && <span>User Dashboard</span>}
+              </Link>
+              {/* <Link
+      href={`/userdashboard/${userId}/roles`}
       className="flex items-center gap-4 p-2 rounded-lg hover:bg-[#926848] transition-colors duration-200"
-      onClick={() => handleItemClick("user-dashboard")}
+      onClick={() => handleItemClick("roles")}
     >
-      <LayoutDashboard size={20} />
-      {isOpen && <span>User Dashboard</span>}
+      <Users size={20} />
+      {isOpen && <span>Roles</span>}
     </Link>
-
-    {/* Register Salon Button */}
-    <Link
-      href={`/userdashboard/${userId}/salons/addsalon`}
-      className="bg-[#926848] px-3 py-2 rounded text-center hover:bg-[#7a5236] transition"
+  <Link
+      href={`/userdashboard/${userId}/adminForm`}
+      className="flex items-center gap-4 p-2 rounded-lg hover:bg-[#926848] transition-colors duration-200"
+      onClick={() => handleItemClick("adminForm")}
     >
-      Register Salon
-    </Link>
-  </div>
-) : (
+      <User size={20} />
+      {isOpen && <span>Admin</span>}
+    </Link> */}
+              {/* Register Salon Button */}
+              <Link
+                href={`/userdashboard/${userId}/salons/addsalon`}
+                className="bg-[#926848] px-3 py-2 rounded text-center hover:bg-[#7a5236] transition"
+              >
+                Register Salon
+              </Link>
+            </div>
+          ) : (
             menuItems.map((item, index) => {
               const Icon = item.icon;
               return (
@@ -314,17 +354,43 @@ export default function Sidebar() {
           </Link>
         </nav>
 
-        {/* Logout */}
         <div className="p-2 border-t border-[#dba072]">
-          <a
-            href="/logout"
-            className="flex items-center gap-4 p-2 rounded-lg hover:bg-[#926848]"
+          <button
+            onClick={() => setShowLogoutModal(true)}
+            className="flex items-center gap-4 p-2 rounded-lg hover:bg-[#926848] w-full text-left"
           >
             <LogOut size={20} />
             {isOpen && <span>Logout</span>}
-          </a>
+          </button>
         </div>
       </div>
+
+      {showLogoutModal && (
+        <div className="fixed inset-0 bg-white/60 bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-80 text-center">
+            <h2 className="text-lg font-bold mb-4">Confirm Logout</h2>
+            <p className="mb-6">Are you sure you want to logout?</p>
+            <div className="flex justify-between">
+              <button
+                onClick={() => setShowLogoutModal(false)}
+                className="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400 transition"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  // Clear local storage and redirect
+                  localStorage.removeItem("user");
+                  window.location.href = "/login"; // replace with your login route
+                }}
+                className="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 transition"
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

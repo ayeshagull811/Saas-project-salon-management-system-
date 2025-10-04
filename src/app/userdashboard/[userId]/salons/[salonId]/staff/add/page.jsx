@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   User,
   Mail,
@@ -17,8 +17,11 @@ import axios from "axios";
 import { useParams } from "next/navigation";
 
 export default function SalonStaffForm() {
+  const [roles, setRoles] = useState([]);
    const params = useParams();
+
     const salonId = params.salonId;
+    const roleId = params.roleId;
     console.log(salonId);
   const [formData, setFormData] = useState({
     firstname: "",
@@ -61,9 +64,11 @@ export default function SalonStaffForm() {
   }
 
   try {
-   let submitData = { ...formData };
-  submitData.role = "employee";
-  submitData.SalonId = salonId;
+       let submitData = { ...formData };   // ✅ formData ka copy banaya
+    submitData.salonId = salonId;       // ✅ salonId assign kiya
+
+    // agar backend ko roleId chahiye:
+    submitData.roleId = formData.role;
     const res =await axios.post(
       "http://localhost:8000/auth/registerstaff",
       submitData,
@@ -80,6 +85,28 @@ export default function SalonStaffForm() {
 
   const [errors, setErrors] = useState({});
   // const [isSubmitted, setIsSubmitted] = useState(false);
+useEffect(() => {
+    const fetchRoles = async () => {
+      try {
+        const res = await axios.get("http://localhost:8000/roles");
+        setRoles(res.data); // assuming backend returns [{id: 1, name: "admin"}, ...]
+      } catch (err) {
+        console.error("Failed to fetch roles", err);
+      }
+    };
+    fetchRoles();},[])
+    useEffect(() => {
+  const fetchRoles = async () => {
+    try {
+      const res = await axios.get(`http://localhost:8000/roles?salonId=${salonId}`);
+      setRoles(res.data); // Only roles for this salon
+    } catch (err) {
+      console.error("Failed to fetch roles", err);
+    }
+  };
+
+  if (salonId) fetchRoles(); // Only fetch if salonId is available
+}, [salonId]);
 
   const positions = [
     "Hair Stylist",
@@ -382,6 +409,21 @@ export default function SalonStaffForm() {
                     </p>
                   )}
                 </div> */}
+       <select
+  name="role"
+  value={formData.role}
+  onChange={handleChange}
+  className={`w-full px-3 border rounded-lg focus:ring-2 focus:ring-[#926848] focus:border-transparent ${
+    errors.role ? "border-red-500" : "border-gray-300"
+  }`}
+>
+  <option value="">Select Role</option>
+  {roles.map((r) => (
+    <option key={r.id} value={r.id}>
+      {r.name}
+    </option>
+  ))}
+</select>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">

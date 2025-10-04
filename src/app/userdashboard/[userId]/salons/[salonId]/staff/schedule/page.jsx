@@ -1,25 +1,18 @@
 "use client";
+import { createSchedule, getSchedule } from "@/app/userdashboard/[userId]/commponents/categoryApi";
+import axios from "axios";
 import { CalendarDays, Clock, Plus, User, Trash2, Eye, Edit, X } from "lucide-react";
-import { useState } from "react";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
-export default function StaffSchedulePage() {
-  const staffList = [
-    { id: 1, name: "Ali", role: "Senior Makeup Artist", avatar: "A" },
-    { id: 2, name: "Sara", role: "Makeup Artist", avatar: "S" },
-  ];
 
-  const [schedule, setSchedule] = useState({});
-  const [showViewPopup, setShowViewPopup] = useState(false);
-  const [showEditPopup, setShowEditPopup] = useState(false);
-  const [selectedStaff, setSelectedStaff] = useState(null);
 
   function formatDate(date) {
     return date.toISOString().split("T")[0];
   }
-
   function formatDisplayDate(dateStr) {
     const date = new Date(dateStr + 'T00:00:00');
-    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     
     return {
@@ -28,35 +21,88 @@ export default function StaffSchedulePage() {
       month: months[date.getMonth()]
     };
   }
-
-  function getWeekDates() {
-    const now = new Date();
-    const start = new Date(now);
-    start.setDate(now.getDate() - now.getDay() + 1);
-
-    return Array.from({ length: 7 }, (_, i) => {
-      const date = new Date(start);
-      date.setDate(start.getDate() + i);
-      return formatDate(date);
-    });
+function getWeekDates() {
+  const today = new Date();
+  const start = new Date(today);
+  start.setDate(today.getDate() - today.getDay()); // Sunday
+  const week = [];
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(start);
+    d.setDate(start.getDate() + i);
+    week.push(d.toISOString().split("T")[0]); // format: YYYY-MM-DD
   }
+  return week;
+}
+export default function StaffSchedulePage() {
+    const [staffMember, setStaffMember] = useState([]);
+  const [schedule, setSchedule] = useState({});
+  const [showViewPopup, setShowViewPopup] = useState(false);
+  const [showEditPopup, setShowEditPopup] = useState(false);
+  const [selectedStaff, setSelectedStaff] = useState(null);
 
   const weekDates = getWeekDates();
-  const today = formatDate(new Date());
-
-  function addShift(staffId, date, start, end) {
-    setSchedule((prev) => {
-      const staffSchedule = prev[staffId] || {};
-      const daySchedule = staffSchedule[date] || [];
-      return {
-        ...prev,
-        [staffId]: {
-          ...staffSchedule,
-          [date]: [...daySchedule, { start, end }],
-        },
-      };
+  const today = weekDates[0]; 
+const getScheduleList = async (userId) =>{
+  if (!userId) return;
+  try {
+    const rows = await getSchedule(userId, weekDates[0], weekDates[6]);
+    // rows should now be an array. If not, guard:
+    const dataRows = Array.isArray(rows) ? rows : (rows?.data ?? []);
+    const scheduleObj = {};
+    dataRows.forEach((row) => {
+      const d = row.date;
+      if (!scheduleObj[d]) scheduleObj[d] = [];
+      scheduleObj[d].push({
+        id: row.id,
+        start: row.start_time,
+        end: row.end_time,
+      });
     });
-  }
+    setSchedule((prev) => ({
+      ...prev,
+      [userId]: scheduleObj,
+    }));
+  }  catch (error) {
+  console.error("fetchScheduleForStaff error:", error);
+}
+}
+
+  // function getWeekDates() {
+  //   const now = new Date();
+  //   const start = new Date(now);
+  //   start.setDate(now.getDate() - now.getDay() + 1);
+
+  //   return Array.from({ length: 7 }, (_, i) => {
+  //     const date = new Date(start);
+  //     date.setDate(start.getDate() + i);
+  //     return formatDate(date);
+  //   });
+  // }
+ const params = useParams();
+  const SalonId = params.salonId;  
+  
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:8000/auth/getstaff/${SalonId}`
+        );
+        console.log("get api", res.data.data);
+        if (res.data.success) {
+          setStaffMember(res.data.data);
+        } else {
+          setError(res.data.message || "Failed to fetch services");
+        }
+        console.log("service data", res.data.data);
+      } catch (err) {
+        console.error(err);
+        setError("Something went wrong!");
+      }
+    };
+
+    if (SalonId) fetchServices();
+  }, [SalonId])
+
 
   function removeShift(staffId, date, shiftIndex) {
     setSchedule((prev) => {
@@ -73,7 +119,38 @@ export default function StaffSchedulePage() {
       };
     });
   }
+async function addShift(userId, date, start_time, end_time) {
+  try {
+    // send staff_id (backend expects staff_id)
+    const created = await createSchedule({
+      staff_id: userId,
+      date,
+      start_time,
+      end_time,
+    });
 
+    // update local state using the returned created object
+    setSchedule((prev) => {
+      const staffSchedule = prev[userId] || {};
+      const daySchedule = staffSchedule[date] ? [...staffSchedule[date]] : [];
+      daySchedule.push({
+        id: created.id, // created is the schedule object returned by backend
+        start: created.start_time,
+        end: created.end_time,
+      });
+      return {
+        ...prev,
+        [userId]: {
+          ...staffSchedule,
+          [date]: daySchedule,
+        },
+      };
+    });
+  } catch (err) {
+    console.error("addShift error:", err?.response?.data || err.message);
+    alert(err?.response?.data?.message || "Failed to add shift");
+  }
+}
   function getTodaySchedule(staffId) {
     if (schedule[staffId] && schedule[staffId][today]) {
       return schedule[staffId][today];
@@ -82,14 +159,16 @@ export default function StaffSchedulePage() {
   }
 
   function openViewPopup(staff) {
-    setSelectedStaff(staff);
-    setShowViewPopup(true);
-  }
+  setSelectedStaff(staff);
+  getScheduleList(staff.id);
+  setShowViewPopup(true);
+}
 
-  function openEditPopup(staff) {
-    setSelectedStaff(staff);
-    setShowEditPopup(true);
-  }
+function openEditPopup(staff) {
+  setSelectedStaff(staff);
+  getScheduleList(staff.id);
+  setShowEditPopup(true);
+}
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
@@ -111,7 +190,7 @@ export default function StaffSchedulePage() {
       {/* Staff Cards Row */}
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {staffList.map((staff) => {
+          {staffMember.map((staff) => {
             const todayShifts = getTodaySchedule(staff.id);
             
             return (
@@ -353,38 +432,39 @@ export default function StaffSchedulePage() {
   );
 }
 
-// Shift Form Component
 function ShiftForm({ onAdd }) {
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleSubmit = () => {
-    if (start && end) {
-      if (start >= end) {
-        alert("End time must be after start time");
-        return;
-      }
-      onAdd(start, end);
-      setStart("");
-      setEnd("");
-      setIsExpanded(false);
-    } else {
+    if (!start || !end) {
       alert("Please select both start and end times");
+      return;
     }
+    if (start >= end) {
+      alert("End time must be after start time");
+      return;
+    }
+    onAdd(start, end);
+    setStart("");
+    setEnd("");
+    setIsExpanded(false);
   };
 
   if (!isExpanded) {
     return (
       <button
         onClick={() => setIsExpanded(true)}
-        className="flex items-center space-x-2 bg-[#ba8e6c] hover:bg-[#987356] text-white px-4 py-2 rounded-lg transition-all duration-200 text-sm font-medium shadow-md hover:shadow-lg"
+        className="flex items-center space-x-2 bg-[#ba8e6c] ..."
       >
         <Plus className="w-4 h-4" />
         <span>Add Shift</span>
       </button>
     );
   }
+
+
 
   return (
     <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-4 border-2 border-[#ba8e6c]/30 shadow-md space-y-3">
@@ -393,9 +473,7 @@ function ShiftForm({ onAdd }) {
         <div className="flex flex-col space-y-1">
           <label className="text-[#ba8e6c] font-medium text-xs">Start Time:</label>
           <input
-            type="time"
-            value={start}
-            onChange={(e) => setStart(e.target.value)}
+          type="time" value={start} onChange={(e) => setStart(e.target.value)}
             className="border-2 border-[#ba8e6c]/50 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#ba8e6c] focus:border-[#ba8e6c] bg-white transition-all w-full"
           />
         </div>
@@ -403,9 +481,7 @@ function ShiftForm({ onAdd }) {
         <div className="flex flex-col space-y-1">
           <label className="text-[#ba8e6c] font-medium text-xs">End Time:</label>
           <input
-            type="time"
-            value={end}
-            onChange={(e) => setEnd(e.target.value)}
+           type="time" value={end} onChange={(e) => setEnd(e.target.value)}
             className="border-2 border-[#ba8e6c]/50 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-[#ba8e6c] focus:border-[#ba8e6c] bg-white transition-all w-full"
           />
         </div>

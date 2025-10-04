@@ -8,12 +8,11 @@ import { useParams, useRouter } from "next/navigation";
 
 export default function UserPage() {
   const router = useRouter();
-  const { userId, salonId } = useParams();
+  const { userId } = useParams();
   const [searchTerm, setSearchTerm] = useState("");
   const [salons, setSalons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
-console.log("salon id",salonId);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -25,20 +24,14 @@ console.log("salon id",salonId);
   useEffect(() => {
     const fetchSalons = async () => {
       try {
-        const storedUserId = localStorage.getItem("userId");
-        if (!storedUserId) {
-          console.warn("⚠️ User ID missing in localStorage");
+        const token = localStorage.getItem("token");
+        if (!token) {
+          console.warn("⚠️ Token missing");
           return;
         }
-        // const storedsalonId = localStorage.getItem("salonId");
-        // if (!storedsalonId) {
-        //   console.warn("⚠️ User ID missing in localStorage");
-        //   return;
-        // }
 
-        const token = localStorage.getItem("token");
         const res = await axios.get(
-          `http://localhost:8000/salon/getsalonbyid/${storedUserId}`,
+          `http://localhost:8000/salon/getsalonbyid/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -46,7 +39,16 @@ console.log("salon id",salonId);
           }
         );
 
-        setSalons(res.data || []);
+        // ✅ Backend response structure check
+        const fetchedSalons = res.data.salons || res.data || [];
+        setSalons(fetchedSalons);
+
+        // ✅ localStorage update
+        const storedUser = JSON.parse(localStorage.getItem("user")) || {};
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ ...storedUser, salons: fetchedSalons })
+        );
       } catch (err) {
         console.error("Failed to fetch salons:", err);
       } finally {
@@ -55,11 +57,16 @@ console.log("salon id",salonId);
     };
     fetchSalons();
   }, [userId]);
-const filterSalon = salons.filter(
-  (s) =>
-    s.salon_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    s.salon_email.toLowerCase().includes(searchTerm.toLowerCase())
-);
+
+  const clearSearch = () => {
+    setSearchTerm("");
+  };
+
+  const filterSalon = salons.filter(
+    (s) =>
+      s.salon_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      s.salon_email?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   if (loading) return <p className="text-center mt-10">Loading salons...</p>;
 
@@ -76,18 +83,16 @@ const filterSalon = salons.filter(
             <p className="mb-4 text-lg text-amber-800">
               You haven’t registered a salon yet
             </p>
-            <button
-              type="submit"
-              className="relative overflow-hidden px-6 py-2 bg-gradient-to-r from-amber-700/40 to-amber-800/40 text-white font-medium rounded-full 
-             hover:opacity-90 hover:scale-105 transition-transform duration-300 hover:text-amber-100 group"
-            >
-              <span className="relative z-10">
-                <Link href={`/userdashboard/${userId}/salons/addsalon`}>
-                  Register Salon
-                </Link>
-              </span>
-              <span className="absolute left-0 top-0 h-full w-0 bg-amber-800 text-amber-700 transition-all duration-500 group-hover:w-full"></span>
-            </button>
+            <Link href={`/userdashboard/${userId}/salons/addsalon`}>
+              <button
+                type="button"
+                className="relative overflow-hidden px-6 py-2 bg-gradient-to-r from-amber-700/40 to-amber-800/40 text-white font-medium rounded-full 
+               hover:opacity-90 hover:scale-105 transition-transform duration-300 hover:text-amber-100 group"
+              >
+                <span className="relative z-10">Register Salon</span>
+                <span className="absolute left-0 top-0 h-full w-0 bg-amber-800 transition-all duration-500 group-hover:w-full"></span>
+              </button>
+            </Link>
           </div>
         </div>
       ) : (
@@ -172,10 +177,10 @@ const filterSalon = salons.filter(
                             `/userdashboard/${userId}/salons/${salon.id}`
                           )
                         }
-                        className="relative overflow-hidden p-2 bg-amber-200/30  bg-gradient-to-r from-amber-800/80 to-amber-700/50 text-white font-semibold rounded-full hover:opacity-90 transition duration-300 hover:text-amber-100 group"
+                        className="relative overflow-hidden p-2 bg-amber-200/30 bg-gradient-to-r from-amber-800/80 to-amber-700/50 text-white font-semibold rounded-full hover:opacity-90 transition duration-300 hover:text-amber-100 group"
                       >
                         <span className="relative z-10">Dashboard</span>
-                        <span className="absolute left-0 top-0 h-full w-0 bg-amber-800 text-amber-700 transition-all duration-500 group-hover:w-full"></span>
+                        <span className="absolute left-0 top-0 h-full w-0 bg-amber-800 transition-all duration-500 group-hover:w-full"></span>
                       </button>
                       <Link
                         href="/landingpage"
