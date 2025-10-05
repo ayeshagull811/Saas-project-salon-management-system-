@@ -1,5 +1,5 @@
 import React from "react";
-import face from "../assets/logo.png";
+import face from "../assets/logoo.png";
 import Image from "next/image";
 import Link from "next/link";
 
