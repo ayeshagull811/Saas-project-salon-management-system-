@@ -51,7 +51,7 @@ export default function LoginPage() {
     }
     try {
       const res = await axiosInstance.post(
-        "http://localhost:8000/auth/loginuser",
+        "auth/loginuser",
         loginForm
       );
       localStorage.setItem("user", JSON.stringify(res.data.user));

@@ -18,18 +18,16 @@ export default function AdminRegisterForm() {
 
   const [roles, setRoles] = useState([]);
 
-  // Fetch admin role for dropdown
 useEffect(() => {
   const token = localStorage.getItem("token");
-  axios
-    .get(`http://localhost:8000/role/getrole?salonId=${salonId}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
+  axiosInstance
+    .get(`/role/getrole?salonId=${salonId}`)
     .then((res) =>
       setRoles(res.data.filter((r) => r.name.toLowerCase() === "admin"))
     )
     .catch((err) => console.error(err));
 }, [salonId]);
+
 
 
   const handleChange = (e) => {
@@ -45,19 +43,11 @@ const handleSubmit = async (e) => {
   }
 
   try {
-    const token = localStorage.getItem("token");
-
-    await axios.post(
-      "http://localhost:8000/auth/registerstaff",
-      {
-        ...formData,
-        salonId: salonId, // ✅ yahan pass karna zaroori hai
-      },
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-
+    await axiosInstance.post("/auth/registerstaff", {
+      ...formData,
+      salonId: salonId,
+    });
     alert("Admin registered successfully");
-
     setFormData({
       firstname: "",
       lastname: "",

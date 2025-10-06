@@ -70,7 +70,7 @@ useEffect(() => {
   }
     try {
       const res = await axiosInstance.post(
-        "http://localhost:8000/auth/registeruser",
+        "/auth/registeruser",
         signupForm
       );
       setPopup({

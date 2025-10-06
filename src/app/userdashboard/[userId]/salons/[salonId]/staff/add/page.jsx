@@ -15,6 +15,7 @@ import {
 import Link from "next/link";
 import axios from "axios";
 import { useParams } from "next/navigation";
+import axiosInstance from "@/axiosInstance";
 
 export default function SalonStaffForm() {
   const [roles, setRoles] = useState([]);
@@ -69,8 +70,8 @@ export default function SalonStaffForm() {
 
     // agar backend ko roleId chahiye:
     submitData.roleId = formData.role;
-    const res =await axios.post(
-      "http://localhost:8000/auth/registerstaff",
+    const res =await axiosInstance.post(
+      "/auth/registerstaff",
       submitData,
         { headers: { "Content-Type": "application/json" } }
     );
@@ -88,7 +89,7 @@ export default function SalonStaffForm() {
 useEffect(() => {
     const fetchRoles = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/roles");
+        const res = await axiosInstance.get("/roles");
         setRoles(res.data); // assuming backend returns [{id: 1, name: "admin"}, ...]
       } catch (err) {
         console.error("Failed to fetch roles", err);
@@ -98,7 +99,7 @@ useEffect(() => {
     useEffect(() => {
   const fetchRoles = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/roles?salonId=${salonId}`);
+      const res = await axiosInstance.get(`/roles?salonId=${salonId}`);
       setRoles(res.data); // Only roles for this salon
     } catch (err) {
       console.error("Failed to fetch roles", err);

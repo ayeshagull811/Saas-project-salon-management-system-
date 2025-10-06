@@ -30,8 +30,8 @@ export default function AllStaffPage() {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:8000/auth/getstaff/${SalonId}`
+        const res = await axiosInstance.get(
+          `/auth/getstaff/${SalonId}`
         );
         console.log("get api", res.data.data);
         if (res.data.success) {

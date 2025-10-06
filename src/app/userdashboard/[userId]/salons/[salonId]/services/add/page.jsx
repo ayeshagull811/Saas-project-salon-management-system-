@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import axios from "axios";
 import { useParams } from "next/navigation";
+import axiosInstance from "@/axiosInstance";
 
 export default function ServiceForm() {
   const [errors, setErrors] = useState({});
@@ -134,8 +135,8 @@ export default function ServiceForm() {
       //   }
       // });
       // formData.append("SalonId", salonId);
-      const res = await axios.post(
-        "http://localhost:8000/services/services",
+      const res = await axiosInstance.post(
+        "/services/services",
         formData, // 👈 yahan service nahi, formData bhejna hai
         {
           headers: {

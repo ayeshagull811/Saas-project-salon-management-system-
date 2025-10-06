@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Plus, Edit2, Trash2, Package, AlertCircle } from "lucide-react";
 import axios from "axios";
 import { useParams } from "next/navigation";
+import axiosInstance from "@/axiosInstance";
 
 export default function SalonInventory({ params }) {
   const { salonId } = useParams(); // ✅ Next.js params
@@ -25,8 +26,8 @@ export default function SalonInventory({ params }) {
 const getApi = () => {
   const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
-  return axios.create({
-    baseURL: "http://localhost:8000/inventory",
+  return axiosInstancesInstance.create({
+    baseURL: "/inventory",
     headers: { Authorization: `Bearer ${token}` },
   });
 };

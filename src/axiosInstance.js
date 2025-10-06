@@ -2,13 +2,17 @@
 "use client";
 import axios from "axios";
 
+// Set your Railway backend URL here
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8000", // apni API ka base URL
+  baseURL: "https://saas-project-salon-management-system-production.up.railway.app", // Replace with your actual Railway backend URL
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
-// har request se pehle token attach karo
+// Attach token to every request if it exists in localStorage
 axiosInstance.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token"); // get token from localStorage
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }

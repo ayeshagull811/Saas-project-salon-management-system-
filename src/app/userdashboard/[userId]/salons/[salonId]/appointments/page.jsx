@@ -12,6 +12,7 @@ import {
   PlusCircle,
 } from "lucide-react";
 import { useParams } from "next/navigation";
+import axiosInstance from "@/axiosInstance";
 
 const AppointmentsDashboard = () => {
   const { userId, salonId } = useParams();
@@ -39,8 +40,8 @@ const AppointmentsDashboard = () => {
   const fetchAppointments = async () => {
     try {
 const token = localStorage.getItem("token");
-const res = await axios.get(
-  `http://localhost:8000/appointment/getappointment/${salonId}`,
+const res = await axiosInstance.get(
+  `/appointment/getappointment/${salonId}`,
   {
     headers: { Authorization: `Bearer ${token}` },
     withCredentials: true,

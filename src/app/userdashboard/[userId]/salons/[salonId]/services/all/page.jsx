@@ -1,5 +1,6 @@
 "use client";
 
+import axiosInstance from "@/axiosInstance";
 import axios from "axios";
 import {
   Edit,
@@ -55,8 +56,8 @@ export default function AllServicesPage() {
     const fetchServices = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(
-          `http://localhost:8000/services/services/${salonId}`
+        const res = await axiosInstance.get(
+          `services/services/${salonId}`
         );
         if (res.data.success) {
           setServices(res.data.data);

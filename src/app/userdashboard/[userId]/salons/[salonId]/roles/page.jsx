@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Plus, Edit2, Trash2, Users, Shield, X, Check } from "lucide-react";
 import { useParams } from "next/navigation";
 import axios from "axios";
+import axiosInstance from "@/axiosInstance";
 
 export default function RolesPermissionsPage() {
   const [roles, setRoles] = useState([]);
@@ -17,20 +18,20 @@ export default function RolesPermissionsPage() {
     typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
   // Fetch roles - your original code unchanged
-const fetchRoles = async (roleId) => {
+const fetchRoles = async () => {
   try {
-    const token = localStorage.getItem("token");
+    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
-  const res = await fetch(
-  `http://localhost:8000/role/getrole?salonId=${salonId}`,
-  { headers: { Authorization: `Bearer ${token}` } }
-);
+   const res = await axiosInstance.get(`/getrole?salonId=${salonId}`, {
+  headers: {
+    Authorization: token ? `Bearer ${token}` : "",
+  },
+  withCredentials: true,
+});
 
-   
-    const data = await res.json(); // ✅ fetch ka correct way
-    console.log("roles by salon id ",data);
-    
-    setRoles(data);
+
+    console.log("roles by salon id", res.data);
+    setRoles(res.data); // Axios data is already parsed
   } catch (err) {
     console.error("Error fetching role:", err.response?.data || err.message);
     return null;
@@ -38,22 +39,33 @@ const fetchRoles = async (roleId) => {
 };
 
   // Fetch permissions - your original code unchanged
-  const fetchPermissions = async () => {
-    const res = await fetch("http://localhost:8000/permission/get", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-     const data = await res.json();  // ✅ convert response to JSON
-  console.log("permission", data);
-  setPermissions(data);    
-  };
+ const fetchPermissions = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const res = await axiosInstance.post(
+      "/permission/get",
+      {}, // empty body
+      {
+        headers: {
+          Authorization: token ? `Bearer ${token}` : "",
+        },
+        withCredentials: true,
+      }
+    );
+    console.log("Permissions:", res.data);
+    setPermissions(res.data);
+  } catch (err) {
+    console.error("Error fetching permissions:", err.response?.data || err.message);
+  }
+};
 
   // Create Role with Permissions - your original code unchanged
 const createRole = async () => {
   try {
     const token = localStorage.getItem("token");
 
-    const res = await axios.post(
-      "http://localhost:8000/role/createrole",
+    const res = await axiosInstance.post(
+      "/role/createrole",
       {
         name: newRole,                // ✅ role ka name bhejo
         permissionIds: selectedPermissions, 
