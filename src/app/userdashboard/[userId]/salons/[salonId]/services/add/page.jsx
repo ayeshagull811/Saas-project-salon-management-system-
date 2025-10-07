@@ -135,8 +135,8 @@ export default function ServiceForm() {
       //   }
       // });
       // formData.append("SalonId", salonId);
-      const res = await axiosInstance.post(
-        "/services/services",
+      const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/services/services`,
         formData, // 👈 yahan service nahi, formData bhejna hai
         {
           headers: {

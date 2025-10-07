@@ -20,8 +20,8 @@ export default function AdminRegisterForm() {
 
 useEffect(() => {
   const token = localStorage.getItem("token");
-  axiosInstance
-    .get(`/role/getrole?salonId=${salonId}`)
+  axios
+    .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/role/getrole?salonId=${salonId}`)
     .then((res) =>
       setRoles(res.data.filter((r) => r.name.toLowerCase() === "admin"))
     )

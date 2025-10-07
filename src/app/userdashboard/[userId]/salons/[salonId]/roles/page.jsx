@@ -22,7 +22,7 @@ const fetchRoles = async () => {
   try {
     const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
-   const res = await axiosInstance.get(`/getrole?salonId=${salonId}`, {
+   const res = await axios.get(`${ process.env.NEXT_PUBLIC_API_BASE_URL}/getrole?salonId=${salonId}`, {
   headers: {
     Authorization: token ? `Bearer ${token}` : "",
   },
@@ -42,8 +42,8 @@ const fetchRoles = async () => {
  const fetchPermissions = async () => {
   try {
     const token = localStorage.getItem("token");
-    const res = await axiosInstance.post(
-      "/permission/get",
+    const res = await axios.post(
+      `${ process.env.NEXT_PUBLIC_API_BASE_URL}/permission/get`,
       {}, // empty body
       {
         headers: {
@@ -64,8 +64,8 @@ const createRole = async () => {
   try {
     const token = localStorage.getItem("token");
 
-    const res = await axiosInstance.post(
-      "/role/createrole",
+    const res = await axios.post(
+      `${ process.env.NEXT_PUBLIC_API_BASE_URL}/role/createrole`,
       {
         name: newRole,                // ✅ role ka name bhejo
         permissionIds: selectedPermissions, 

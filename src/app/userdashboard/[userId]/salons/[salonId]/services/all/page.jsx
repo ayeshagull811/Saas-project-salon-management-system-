@@ -56,8 +56,8 @@ export default function AllServicesPage() {
     const fetchServices = async () => {
       try {
         setLoading(true);
-        const res = await axiosInstance.get(
-          `services/services/${salonId}`
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}services/services/${salonId}`
         );
         if (res.data.success) {
           setServices(res.data.data);

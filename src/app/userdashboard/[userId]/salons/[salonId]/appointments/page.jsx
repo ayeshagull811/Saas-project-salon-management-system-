@@ -40,8 +40,8 @@ const AppointmentsDashboard = () => {
   const fetchAppointments = async () => {
     try {
 const token = localStorage.getItem("token");
-const res = await axiosInstance.get(
-  `/appointment/getappointment/${salonId}`,
+const res = await axios.get(
+  `${process.env.NEXT_PUBLIC_API_BASE_URL}/appointment/getappointment/${salonId}`,
   {
     headers: { Authorization: `Bearer ${token}` },
     withCredentials: true,
@@ -60,7 +60,7 @@ const addAppointment = async (e) => {
     const token = localStorage.getItem("token");
 
     await axios.post(
-      "http://localhost:8000/appointment/postappointment",
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}http://localhost:8000/appointment/postappointment`,
       {
         ...formData,
         salonId: salonId, // 👈 extra safety ke liye

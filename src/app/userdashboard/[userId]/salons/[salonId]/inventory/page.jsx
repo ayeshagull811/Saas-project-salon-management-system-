@@ -27,7 +27,7 @@ const getApi = () => {
   const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
   return axiosInstancesInstance.create({
-    baseURL: "/inventory",
+    baseURL:  process.env.NEXT_PUBLIC_API_BASE_URL+"/inventory",
     headers: { Authorization: `Bearer ${token}` },
   });
 };
