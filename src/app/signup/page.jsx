@@ -69,8 +69,8 @@ useEffect(() => {
     return;
   }
     try {
-      const res = await axiosInstance.post(
-        "/auth/registeruser",
+      const res = await axios.post(
+       `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/registeruser`,
         signupForm
       );
       setPopup({

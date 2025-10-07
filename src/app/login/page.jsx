@@ -50,8 +50,8 @@ export default function LoginPage() {
       return;
     }
     try {
-      const res = await axiosInstance.post(
-        "auth/loginuser",
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/loginuser`,
         loginForm
       );
       localStorage.setItem("user", JSON.stringify(res.data.user));
