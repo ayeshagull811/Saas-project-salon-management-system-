@@ -45,20 +45,20 @@ useEffect(() => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitSuccess(true);
-    if (
-    !signupForm.firstname ||
-    !signupForm.lastname 
-    // !signupForm.email ||
-    // !signupForm.password_hash ||
-    // !signupForm.confirmpassword
-  ) {
-    setPopup({
-      show: true,
-      message: "All fields are required!",
-      type: "error",
-    });
-    return;
-  }
+  //   if (
+  //   !signupForm.firstname ||
+  //   !signupForm.lastname 
+  //   !signupForm.email ||
+  //   !signupForm.password_hash ||
+  //   !signupForm.confirmpassword
+  // ) {
+  //   setPopup({
+  //     show: true,
+  //     message: "All fields are required!",
+  //     type: "error",
+  //   });
+  //   return;
+  // }
 
   if (signupForm.password_hash !== signupForm.confirmpassword) {
     setPopup({
