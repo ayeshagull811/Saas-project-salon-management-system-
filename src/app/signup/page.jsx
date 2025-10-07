@@ -47,10 +47,10 @@ useEffect(() => {
     setSubmitSuccess(true);
     if (
     !signupForm.firstname ||
-    !signupForm.lastname ||
-    !signupForm.email ||
-    !signupForm.password_hash ||
-    !signupForm.confirmpassword
+    !signupForm.lastname 
+    // !signupForm.email ||
+    // !signupForm.password_hash ||
+    // !signupForm.confirmpassword
   ) {
     setPopup({
       show: true,
