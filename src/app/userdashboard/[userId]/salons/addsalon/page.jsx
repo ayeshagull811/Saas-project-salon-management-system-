@@ -60,7 +60,7 @@ export default function RegisterPage() {
     setSubmitSuccess(true);
     try {
       const res = await axiosInstance.post(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/salon/create`,
+        `/salon/create`,
         { ...registerForm, userId },
         {
           headers: {

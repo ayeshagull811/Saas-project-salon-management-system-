@@ -6,6 +6,7 @@ import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { FaLinkedin, FaInstagram, FaFacebookF } from "react-icons/fa";
 import axios from "axios";
+import axiosInstance from "@/axiosInstance";
 import staff from '@/assets/stafff.png'
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -22,7 +23,7 @@ export default function StaffLogin() {
   const handleSubmit = async e =>{
     e.preventDefault();
     try {
-      const res =await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/employee/loginemployee`,staffLoginForm)
+      const res =await axiosInstance.post(`/employee/loginemployee`,staffLoginForm)
       console.log("res data",res);
       
       alert(res.data.message);

@@ -6,6 +6,7 @@ import staff from '@/assets/stafff.png'
 import Image from "next/image";
 import { motion } from "framer-motion";
 import axios from "axios";
+import axiosInstance from "@/axiosInstance";
 import { useParams } from "next/navigation";
 
 export default function ChangePasswordForm() {
@@ -48,9 +49,9 @@ console.log("change password",changePasswordForm);
         return setMessage("Employee ID not found. Please login again.");
       }
 
-      const res = await axios.put(
-        `http://localhost:8000/employee/changepassword/${employeeId}`,
-       changePasswordForm
+      const res = await axiosInstance.put(
+        `/employee/changepassword/${employeeId}`,
+        changePasswordForm
       );
 
       setMessage(res.data.message || "Password changed successfully!");

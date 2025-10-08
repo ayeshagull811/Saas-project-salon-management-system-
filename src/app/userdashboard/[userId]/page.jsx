@@ -4,6 +4,7 @@ import { ExternalLink, Mail, Phone, Search } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
+import axiosInstance from "@/axiosInstance";
 import { useParams, useRouter } from "next/navigation";
 
 export default function UserPage() {
@@ -30,8 +31,8 @@ export default function UserPage() {
           return;
         }
 
-        const res = await axios.get(
-          `h${process.env.NEXT_PUBLIC_API_BASE_URL}salon/getsalonbyid/${userId}`,
+        const res = await axiosInstance.get(
+          `/salon/getsalonbyid/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
