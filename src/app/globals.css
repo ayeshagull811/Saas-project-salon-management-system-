@@ -1,14 +1,18 @@
-@import "tailwindcss";
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+@import "tailwindcss/theme";
 
+/* ✅ Custom CSS starts below */
 
 :root {
   /* --background: #ffffff;
   --foreground: #171717; */
 }
+
+/* Swiper Pagination Bullets */
 .swiper-pagination-bullet {
   background-color: #ec4899 !important; /* Tailwind pink-500 */
 }
-
 
 @theme inline {
   /* --color-background: var(--background); */
@@ -29,6 +33,7 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
 /* Dots ka color (pagination bullets) */
 .swiper-pagination-bullet {
   background-color: #f59e0b !important; /* amber-500 */
@@ -43,35 +48,32 @@ body {
 .swiper-button-prev {
   color: #f59e0b !important; /* amber-500 */
   font-weight: bold;
-
 }
+
 .swiper {
   padding-bottom: 60px !important; /* Jitna gap chahiye utna */
 }
 
 .swiper-pagination {
-  position: relative !important; /* ab margin work karega */
-  margin-top: 20px !important;   /* dots aur box ke darmiyan gap */
+  position: relative !important;
+  margin-top: 20px !important;
 }
-/* Optional: hover effect */
+
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
   color: #d97706 !important; /* amber-600 darker hover */
 }
 
-/* Agar swiper ka background hatana ho */
 .swiper {
   background: transparent !important;
 }
 
 body {
-  font-family: 'Poppins', sans-serif; /* ya koi bhi font */
+  font-family: 'Poppins', sans-serif;
 }
+
 .space-grotesk {
   font-family: var(--font-space-grotesk), sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
 }
-/* .font-beautium {
-  font-family: var(--font-beautium), cursive;
-} */
