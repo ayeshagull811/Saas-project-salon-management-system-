@@ -4,11 +4,12 @@ import axios from "axios";
 
 // Set your Railway backend URL here
 const axiosInstance = axios.create({
-  baseURL: "https://saas-project-salon-management-system-production.up.railway.app", // Replace with your actual Railway backend URL
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL, // use env variable
   headers: {
     "Content-Type": "application/json",
   },
 });
+
 
 // Attach token to every request if it exists in localStorage
 axiosInstance.interceptors.request.use((config) => {
