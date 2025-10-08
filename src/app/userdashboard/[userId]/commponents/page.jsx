@@ -30,7 +30,7 @@ export default function AllSalons() {
         console.log("token in all salon ",token);
         
         const res = await axios.get(
-          `http://localhost:8000/salon/getsalonbyid/${userId}`, // ✅ naya endpoint
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/salon/getsalonbyid/${userId}`, // ✅ naya endpoint
           {
             headers: {
               Authorization: `Bearer ${token}`,

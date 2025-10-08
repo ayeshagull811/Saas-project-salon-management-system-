@@ -85,7 +85,7 @@ const getScheduleList = async (userId) =>{
     const fetchServices = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8000/auth/getstaff/${SalonId}`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/getstaff/${SalonId}`
         );
         console.log("get api", res.data.data);
         if (res.data.success) {

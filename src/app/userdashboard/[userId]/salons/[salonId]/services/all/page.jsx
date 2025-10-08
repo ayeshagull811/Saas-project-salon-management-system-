@@ -105,7 +105,7 @@ export default function AllServicesPage() {
 className="relative group h-64 rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-2xl border border-[#926848]"          >
             <div className="w-full h-full bg-cover bg-center transition-all duration-500">
               <Image
-                src={`http://localhost:8000${service.image}`} // combine base URL + relative path
+                src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${service.image}`} // combine base URL + relative path
                 alt={service.name}
                 width={300}
                 height={200}

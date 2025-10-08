@@ -22,7 +22,7 @@ export default function StaffLogin() {
   const handleSubmit = async e =>{
     e.preventDefault();
     try {
-      const res =await axios.post("http://localhost:8000/employee/loginemployee",staffLoginForm)
+      const res =await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/employee/loginemployee`,staffLoginForm)
       console.log("res data",res);
       
       alert(res.data.message);
