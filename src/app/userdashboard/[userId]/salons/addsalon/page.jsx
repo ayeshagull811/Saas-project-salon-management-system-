@@ -59,7 +59,7 @@ export default function RegisterPage() {
     e.preventDefault();
     setSubmitSuccess(true);
     try {
-      const res = await axios.post(
+      const res = await axiosInstance.post(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/salon/create`,
         { ...registerForm, userId },
         {
