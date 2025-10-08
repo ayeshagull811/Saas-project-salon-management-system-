@@ -59,8 +59,8 @@ export default function RegisterPage() {
     e.preventDefault();
     setSubmitSuccess(true);
     try {
-      const res = await axiosInstance.post(
-        `/salon/create`,
+      const res = await axios.post(
+        "https://backend-salon-production.up.railway.app/salon/create",
         { ...registerForm, userId },
         {
           headers: {
