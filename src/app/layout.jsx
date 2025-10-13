@@ -8,17 +8,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Salon Management System",
-  description: "Manage your salon efficiently with our SaaS platform.",
+  title: "Salon Management",
+  description: "SaaS Salon App",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      {/* ✅ Tailwind works properly when we merge className like this */}
-      <body className={`${geistMono.className} bg-white text-gray-900`}>
-        {children}
-      </body>
+      <body className={geistMono.className}>{children}</body>
     </html>
   );
 }
