@@ -1,8 +1,6 @@
-@import "tailwindcss/preflight";
-@import "tailwindcss/utilities";
-@import "tailwindcss/theme";
+@import "tailwindcss";
 
-/* ✅ Custom CSS starts below */
+/* ✅ Custom CSS below */
 
 :root {
   /* --background: #ffffff;
@@ -11,47 +9,30 @@
 
 /* Swiper Pagination Bullets */
 .swiper-pagination-bullet {
-  background-color: #ec4899 !important; /* Tailwind pink-500 */
-}
-
-@theme inline {
-  /* --color-background: var(--background); */
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* --background: #0a0a0a;
-    --foreground: #ededed; */
-  }
-}
-
-body {
-  /* background: var(--background); */
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Dots ka color (pagination bullets) */
-.swiper-pagination-bullet {
   background-color: #f59e0b !important; /* amber-500 */
   opacity: 1 !important;
 }
+
 .swiper-pagination-bullet-active {
   background-color: #f59e0b !important; /* amber-500 */
 }
 
-/* Arrows ka color (navigation buttons) */
+/* Arrows color (navigation buttons) */
 .swiper-button-next,
 .swiper-button-prev {
-  color: #f59e0b !important; /* amber-500 */
+  color: #f59e0b !important;
   font-weight: bold;
 }
 
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: #d97706 !important;
+}
+
+/* Swiper spacing */
 .swiper {
-  padding-bottom: 60px !important; /* Jitna gap chahiye utna */
+  padding-bottom: 60px !important;
+  background: transparent !important;
 }
 
 .swiper-pagination {
@@ -59,17 +40,10 @@ body {
   margin-top: 20px !important;
 }
 
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
-  color: #d97706 !important; /* amber-600 darker hover */
-}
-
-.swiper {
-  background: transparent !important;
-}
-
+/* Global Fonts */
 body {
   font-family: 'Poppins', sans-serif;
+  color: var(--foreground);
 }
 
 .space-grotesk {
