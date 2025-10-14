@@ -87,7 +87,7 @@ localStorage.setItem("token", res.data.token);
         // initial={{ y: "-100%" }}
         // animate={{ y: 0 }}
         // transition={{ duration: 1, ease: "easeOut" }}
-        className="relative h-100 bg-[#CA9871] flex items-center justify-center"
+        className="relative h-[600px] bg-[#CA9871] flex items-center justify-center"
         style={{
           borderBottomLeftRadius: "40% 40%",
           borderBottomRightRadius: "40% 40%",
@@ -109,7 +109,7 @@ localStorage.setItem("token", res.data.token);
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           action=""
-          className="absolute top-15 w-full justify-center align-center max-w-md p-8 sm:p-10 flex flex-col  border border-white/20 rounded-xl bg-white/30 backdrop-blur-md shadow-lg"
+          className="relative w-full justify-center align-center max-w-md p-8 sm:p-10 flex flex-col border border-white/20 rounded-xl bg-white/30 backdrop-blur-md shadow-lg"
         >
           <div className="flex justify-center items-center mt-5">
             <h2 className="text-3xl font-bold drop-shadow-lg  text-amber-700 text-center mb-5">
@@ -131,7 +131,7 @@ localStorage.setItem("token", res.data.token);
               id="email"
               onChange={handleChange}
               value={loginForm.email}
-              className="pl-10 mb-2  py-2 border rounded-md border-amber-600 w-[350px]"
+              className="pl-10 mb-2 py-2 border rounded-md border-amber-600 w-full"
             />
             <Mail className="absolute left-3 top-11 transform -translate-y-1/2 w-5 h-5 text-amber-600" />
           </div>
@@ -149,7 +149,7 @@ localStorage.setItem("token", res.data.token);
               name="password_hash"
               onChange={handleChange}
               value={loginForm.password_hash}
-              className="pl-10 mb-2  py-2 border rounded-md border-amber-600 w-[350px]"
+              className="pl-10 mb-2 py-2 border rounded-md border-amber-600 w-full"
             />
             <Lock className="absolute left-3 top-11 transform -translate-y-1/2 w-5 h-5 text-amber-600" />
           </div>
@@ -172,7 +172,7 @@ localStorage.setItem("token", res.data.token);
 
           <button
             type="submit"
-            className="relative overflow-hidden px-7 py-2 bg-amber-200/30w-full bg-gradient-to-r from-amber-700 to-amber-600 text-white font-semibold rounded-full hover:opacity-90 transition duration-300 hover:text-amber-100 group"
+            className="relative overflow-hidden px-7 py-2 w-full bg-gradient-to-r from-amber-700 to-amber-600 text-white font-semibold rounded-full hover:opacity-90 transition duration-300 hover:text-amber-100 group"
           >
             <span className="relative z-10">Login</span>
             <span className="absolute left-0 top-0 h-full w-0 bg-amber-800 text-amber-700 transition-all duration-500 group-hover:w-full"></span>

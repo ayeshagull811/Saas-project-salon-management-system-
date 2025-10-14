@@ -80,7 +80,7 @@ export default function UserPage() {
               WELCOME! {user?.firstname || "Guest"}
             </h1>
           </div>
-          <div className="flex flex-col items-center justify-center mt-30 text-center">
+          <div className="flex flex-col items-center justify-center mt-32 text-center">
             <p className="mb-4 text-lg text-amber-800">
               You haven’t registered a salon yet
             </p>
@@ -143,7 +143,7 @@ export default function UserPage() {
               {filterSalon.map((salon) => (
                 <div
                   key={salon.id}
-                  className="relative group h-64 rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 transform hover:scale-105 hover:shadow-2xl border border-[#926848]"
+                  className="relative group h-64 rounded-2xl overflow-hidden shadow-lg cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl border border-amber-700"
                 >
                   <div className="w-full h-full bg-cover bg-center transition-all duration-500">
                     <img
@@ -155,8 +155,8 @@ export default function UserPage() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-                  <div className="absolute inset-0 p-6 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 p-6 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-4 group-hover:translate-y-0">
                     <div className="text-white">
                       <h2 className="text-xl font-semibold mb-3">
                         {salon.salon_name}
@@ -178,7 +178,7 @@ export default function UserPage() {
                             `/userdashboard/${userId}/salons/${salon.id}`
                           )
                         }
-                        className="relative overflow-hidden p-2 bg-amber-200/30 bg-gradient-to-r from-amber-800/80 to-amber-700/50 text-white font-semibold rounded-full hover:opacity-90 transition duration-300 hover:text-amber-100 group"
+                        className="relative overflow-hidden p-2 bg-gradient-to-r from-amber-800/80 to-amber-700/50 text-white font-semibold rounded-full hover:opacity-90 transition-all duration-300 hover:text-amber-100 group"
                       >
                         <span className="relative z-10">Dashboard</span>
                         <span className="absolute left-0 top-0 h-full w-0 bg-amber-800 transition-all duration-500 group-hover:w-full"></span>

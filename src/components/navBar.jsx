@@ -7,8 +7,8 @@ export default function NavBarPage() {
   return (
     <div className="bg-pink-200">
       <div className="max-w-6xl mx-auto flex justify-between items-center relative z-10">
-        <div className="flex justify-left -ml-13 items-center ">
-          <Image src={face} alt="face" className="w-35 h-30" />
+        <div className="flex justify-left -ml-[52px] items-center ">
+          <Image src={face} alt="face" className="w-[140px] h-[120px]" />
           <h1 className="text-3xl font-bold -ml-8">BeautySalon</h1>
         </div>
 

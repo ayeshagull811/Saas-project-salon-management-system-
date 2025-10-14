@@ -6,7 +6,7 @@ import imgaes from "../assets/img3.jpeg";
 
 export default function AboutSection() {
   return (
-    <section className="bg-[#CA9871] relative rounded-4xl h-100  my-20">
+    <section className="bg-[#CA9871] relative rounded-4xl h-[450px] my-20">
       <div className="max-w-6xl mx-auto px-4 lg:px-8">
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div>
@@ -26,31 +26,31 @@ export default function AboutSection() {
             </p>
           </div>
           <div className="relative">
-            <div className="bg-amber-50 rounded-full w-60 h-60 absolute -bottom-5 left-50">
+            <div className="bg-amber-50 rounded-full w-[240px] h-[240px] absolute -bottom-5 left-[200px]">
               <Image
                 src={team}
                 alt="Salon Interior"
                 width={600}
                 height={400}
-                className="rounded-full h-50 w-50 left-5 top-5 absolute"
+                className="rounded-full h-[200px] w-[200px] left-5 top-5 absolute object-cover"
               />
             </div>
-            <div className="bg-amber-50 rounded-full w-60 h-60 absolute -top-10 left-25">
+            <div className="bg-amber-50 rounded-full w-[240px] h-[240px] absolute -top-10 left-[100px]">
               <Image
                 src={salon}
                 alt="Salon Team"
                 width={300}
                 height={200}
-                className="rounded-full h-50 w-50 left-5 top-5 absolute"
+                className="rounded-full h-[200px] w-[200px] left-5 top-5 absolute object-cover"
               />
             </div>
-            <div className="bg-amber-50 rounded-full w-60 h-60 absolute -top-10 left-75">
+            <div className="bg-amber-50 rounded-full w-[240px] h-[240px] absolute -top-10 left-[300px]">
               <Image
                 src={imgaes}
                 alt="Happy Client"
                 width={300}
                 height={200}
-                 className="rounded-full h-50 w-50 left-5 top-5 absolute"
+                className="rounded-full h-[200px] w-[200px] left-5 top-5 absolute object-cover"
               />
             </div>
           </div>

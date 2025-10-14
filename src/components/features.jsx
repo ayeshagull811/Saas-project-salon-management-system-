@@ -58,29 +58,26 @@ export default function KeyFeatures() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
   return (
-    <motion.section className="py-25 -mb-9">
-      <div>
-        <Image src={flower} alt="flower" className="relative -top-15 left-230 w-50 h-60" /> 
-        <motion.h2
-        initial={{ opacity: 0, y: -50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: false, amount: 0.3 }}
-        className="text-5xl font-extrabold text-center absolute top-200 left-90 bg-gradient-to-r from-amber-700 to-amber-300 bg-clip-text text-transparent mb-12"
-        style={{ filter: "drop-shadow(0 4px 6px rgba(255, 182, 193, 0.8))" }}
-      >
-        Why Salons Love Us
-      </motion.h2>
-      </div>
-      
-
+    <motion.section className="py-20 -mb-8 relative">
       <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
-        className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4"
+        className="max-w-6xl mx-auto px-4"
       >
+        <motion.h2
+          initial={{ opacity: 0, y: -50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: false, amount: 0.3 }}
+          className="text-5xl font-extrabold text-center bg-gradient-to-r from-amber-700 to-amber-300 bg-clip-text text-transparent mb-16"
+          style={{ filter: "drop-shadow(0 4px 6px rgba(255, 182, 193, 0.8))" }}
+        >
+          Why Salons Love Us
+        </motion.h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {features.map((feature, index) => (
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -88,7 +85,7 @@ export default function KeyFeatures() {
             transition={{ duration: 0.6 }}
             viewport={{ once: false, amount: 0.3 }}
             key={index}
-            className=" border border-amber-600 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-transform transform hover:-translate-y-2"
+            className="bg-white border border-amber-200 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:border-amber-400"
           >
             <feature.icon className="w-14 h-14 text-amber-500 mb-6" />
             <motion.h3 className="font-semibold text-xl mb-3">
@@ -99,6 +96,7 @@ export default function KeyFeatures() {
             </motion.p>
           </motion.div>
         ))}
+        </div>
       </motion.div>
     </motion.section>
   );

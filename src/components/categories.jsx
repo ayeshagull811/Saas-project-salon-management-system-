@@ -121,13 +121,12 @@ Walk out with nails that turn heads.`,
 
 
   return (
-    <section className="py-3">
-      <div>
-          <Image src={flower} alt="flower"  className="relative -top-10"/>
-      <h2 className="text-5xl font-extrabold absolute top-480 left-120 text-center bg-gradient-to-r from-amber-700 to-amber-300 bg-clip-text text-transparent -mb-20"
-        style={{ filter: "drop-shadow(0 4px 6px rgba(255, 182, 193, 0.8))" }}>
-        Our Services
-      </h2>
+    <section className="py-20 relative">
+      <div className="text-center mb-16">
+        <h2 className="text-5xl font-extrabold bg-gradient-to-r from-amber-700 to-amber-300 bg-clip-text text-transparent mb-8"
+          style={{ filter: "drop-shadow(0 4px 6px rgba(255, 182, 193, 0.8))" }}>
+          Our Services
+        </h2>
       </div>
       
 
@@ -137,16 +136,26 @@ Walk out with nails that turn heads.`,
         pagination={{ clickable: true }}
         navigation
         loop={true}
-        slidesPerView={3}
+        slidesPerView={1}
         spaceBetween={30}
-        className="max-w-6xl mx-auto"
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 3,
+          },
+        }}
+        className="max-w-6xl mx-auto px-4"
       >
         {services.map((service, index) => (
           <SwiperSlide key={index}>
-            <div className="border-amber-500 border h-100 p-7 my-7 rounded-2xl shadow-lg hover:shadow-xl transition-transform transform hover:-translate-y-2 text-center">
-              <service.icon className="w-30 h-30 text-amber-500 mb-4 " />
-              <h3 className="font-semibold text-amber-500 text-xl my-4">{service.title}</h3>
-              <p className="text-gray-600  text-sm">{service.desc}</p>
+            <div className="bg-white border border-amber-200 h-[350px] p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:border-amber-400 text-center flex flex-col">
+              <div className="flex justify-center mb-4">
+                <service.icon />
+              </div>
+              <h3 className="font-semibold text-amber-600 text-xl mb-4">{service.title}</h3>
+              <p className="text-gray-600 text-sm leading-relaxed flex-grow">{service.desc}</p>
             </div>
           </SwiperSlide>
         ))}

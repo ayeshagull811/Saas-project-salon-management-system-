@@ -98,7 +98,7 @@ useEffect(() => {
         // initial={{ y: "-100%" }}
         // animate={{ y: 0 }}
         // transition={{ duration: 1, ease: "easeOut" }}
-        className="relative h-100 bg-[#CA9871]/90 flex items-center justify-center"
+        className="relative h-[600px] bg-[#CA9871]/90 flex items-center justify-center"
         style={{
           borderBottomLeftRadius: "40% 40%",
           borderBottomRightRadius: "40% 40%",
@@ -120,7 +120,7 @@ useEffect(() => {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           action=""
-          className="absolute space-y-3 top-15 w-full justify-center align-center max-w-md  sm:p-8 flex flex-col rounded-xl bg-white/30 backdrop-blur-md shadow-2xl"
+          className="relative space-y-3 w-full justify-center align-center max-w-md sm:p-8 flex flex-col rounded-xl bg-white/30 backdrop-blur-md shadow-2xl"
         >
           <div className=" justify-center items-center mt-5">
             <p className="text-2xl font-bold drop-shadow-lg  text-amber-700 text-center mb-5">
@@ -221,7 +221,7 @@ useEffect(() => {
 
           <button
             type="submit"
-            className="relative overflow-hidden px-7 py-2 bg-amber-200/30w-full bg-gradient-to-r from-amber-700 to-amber-600 text-white font-semibold rounded-full hover:opacity-90 transition duration-300 hover:text-amber-100 group"
+            className="relative overflow-hidden px-7 py-2 w-full bg-gradient-to-r from-amber-700 to-amber-600 text-white font-semibold rounded-full hover:opacity-90 transition duration-300 hover:text-amber-100 group"
           >
             <span className="relative z-10">Sign Up</span>
             <span className="absolute left-0 top-0 h-full w-0 bg-amber-800 text-amber-700 transition-all duration-500 group-hover:w-full"></span>

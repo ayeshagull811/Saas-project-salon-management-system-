@@ -25,7 +25,7 @@ export default function Home() {
     <div>
       <Header />
       <div
-        className="relative h-150 text-white overflow-hidden font-sans"
+        className="relative h-[600px] text-white overflow-hidden font-sans"
         style={{
           borderBottomLeftRadius: "50% 20%",
           borderBottomRightRadius: "50% 20%",
@@ -35,7 +35,7 @@ export default function Home() {
           initial={{ x: "100%" }}
           animate={{ x: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="absolute top-0 left-150 w-200 h-full rounded-l-full overflow-hidden"
+          className="absolute top-0 left-[600px] w-[800px] h-full rounded-l-full overflow-hidden"
         >
           <Image
             src={myimage}
@@ -51,12 +51,12 @@ export default function Home() {
           className="absolute inset-0  bg-[#CA9871]  -z-10 shadow-xl"
         />
 
-        <div className="text-center mt-60 -ml-150">
+        <div className="text-center mt-32 -ml-[600px]">
           <motion.h1
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="space-grotesk  text-5xl"
+            className="font-space-grotesk text-5xl"
             
           >
             Health Care & <br /> Beauty Salon
