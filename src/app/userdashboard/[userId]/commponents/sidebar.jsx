@@ -157,65 +157,65 @@ export default function Sidebar() {
       path: `/userdashboard/${userId}/salons/${salonId}/inventory`,
       key: "inventory",
     },
-    {
-      name: "Billing",
-      icon: DollarSign,
-      path: `/userdashboard/${userId}/salons/${salonId}/billing`,
-      key: "billing",
-      hasSubmenu: true,
-      submenu: [
-        {
-          name: "All Bills",
-          path: `/userdashboard/${userId}/salons/${salonId}/billing/all`,
-          key: "all-bills",
-        },
-        {
-          name: "Pending Payments",
-          path: `/userdashboard/${userId}/salons/${salonId}/billing/pending`,
-          key: "pending-payments",
-        },
-        {
-          name: "Payment History",
-          path: `/userdashboard/${userId}/salons/${salonId}/billing/history`,
-          key: "payment-history",
-        },
-      ],
-    },
+    // {
+    //   name: "Billing",
+    //   icon: DollarSign,
+    //   path: `/userdashboard/${userId}/salons/${salonId}/billing`,
+    //   key: "billing",
+    //   hasSubmenu: true,
+    //   submenu: [
+    //     {
+    //       name: "All Bills",
+    //       path: `/userdashboard/${userId}/salons/${salonId}/billing/all`,
+    //       key: "all-bills",
+    //     },
+    //     {
+    //       name: "Pending Payments",
+    //       path: `/userdashboard/${userId}/salons/${salonId}/billing/pending`,
+    //       key: "pending-payments",
+    //     },
+    //     {
+    //       name: "Payment History",
+    //       path: `/userdashboard/${userId}/salons/${salonId}/billing/history`,
+    //       key: "payment-history",
+    //     },
+    //   ],
+    // },
     {
       name: "Offers",
       icon: Tag,
       path: `/userdashboard/${userId}/salons/${salonId}/offers`,
       key: "offers",
     },
-    {
-      name: "Reports",
-      icon: BarChart,
-      path: `/userdashboard/${userId}/salons/${salonId}/reports`,
-      key: "reports",
-      hasSubmenu: true,
-      submenu: [
-        {
-          name: "Daily Reports",
-          path: `/userdashboard/${userId}/salons/${salonId}/reports/daily`,
-          key: "daily-reports",
-        },
-        {
-          name: "Weekly Reports",
-          path: `/userdashboard/${userId}/salons/${salonId}/reports/weekly`,
-          key: "weekly-reports",
-        },
-        {
-          name: "Monthly Reports",
-          path: `/userdashboard/${userId}/salons/${salonId}/reports/monthly`,
-          key: "monthly-reports",
-        },
-        {
-          name: "Staff Performance",
-          path: `/userdashboard/${userId}/salons/${salonId}/reports/staff`,
-          key: "staff-performance",
-        },
-      ],
-    },
+    // {
+    //   name: "Reports",
+    //   icon: BarChart,
+    //   path: `/userdashboard/${userId}/salons/${salonId}/reports`,
+    //   key: "reports",
+    //   hasSubmenu: true,
+    //   submenu: [
+    //     {
+    //       name: "Daily Reports",
+    //       path: `/userdashboard/${userId}/salons/${salonId}/reports/daily`,
+    //       key: "daily-reports",
+    //     },
+    //     {
+    //       name: "Weekly Reports",
+    //       path: `/userdashboard/${userId}/salons/${salonId}/reports/weekly`,
+    //       key: "weekly-reports",
+    //     },
+    //     {
+    //       name: "Monthly Reports",
+    //       path: `/userdashboard/${userId}/salons/${salonId}/reports/monthly`,
+    //       key: "monthly-reports",
+    //     },
+    //     {
+    //       name: "Staff Performance",
+    //       path: `/userdashboard/${userId}/salons/${salonId}/reports/staff`,
+    //       key: "staff-performance",
+    //     },
+    //   ],
+    // },
   ];
 
   useEffect(() => {
