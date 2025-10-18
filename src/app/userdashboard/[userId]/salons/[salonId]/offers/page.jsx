@@ -110,7 +110,7 @@ export default function OffersPage() {
               </div>
 
               {/* Card Body */}
-              <div className="p-8">
+              <div className="p-8 bg-[#d4a373]">
                 {/* Validity */}
                 <div className="bg-gradient-to-r from-[#926848]/20 to-[#d4a373]/20 border border-[#926848]/30 text-[#d4a373] px-4 py-3 rounded-xl text-center mb-6 font-medium">
                   ⏰ {offer.validity}
