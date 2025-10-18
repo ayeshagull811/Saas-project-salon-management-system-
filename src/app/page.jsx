@@ -25,7 +25,7 @@ export default function Home() {
     <div>
       <Header />
       <div
-        className="relative h-[600px] text-white overflow-hidden font-sans"
+        className="relative h-[400px] md:h-[500px] lg:h-[600px] text-white overflow-hidden font-sans"
         style={{
           borderBottomLeftRadius: "50% 20%",
           borderBottomRightRadius: "50% 20%",
@@ -35,7 +35,7 @@ export default function Home() {
           initial={{ x: "100%" }}
           animate={{ x: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="absolute top-0 left-[600px] w-[800px] h-full rounded-l-full overflow-hidden"
+          className="absolute top-0 left-[200px] md:left-[400px] lg:left-[600px] w-[300px] md:w-[500px] lg:w-[800px] h-full rounded-l-full overflow-hidden"
         >
           <Image
             src={myimage}
@@ -51,26 +51,26 @@ export default function Home() {
           className="absolute inset-0  bg-[#CA9871]  -z-10 shadow-xl"
         />
 
-        <div className="text-center mt-32 -ml-[600px]">
-          <motion.h1
-            initial={{ y: -50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="font-space-grotesk text-5xl"
-            
-          >
-            Health Care & <br /> Beauty Salon
-          </motion.h1>
-          <button
-            className="relative overflow-hidden px-7 py-2 rounded border bg-white/30 mt-10  border-white/60 hover:text-white
-  transition-all duration-500 group"
-          >
-            <span className="relative z-10">
-              <Link href="signup">Demo</Link>
-            </span>
-            <span className="absolute left-0 top-0 h-full w-0 bg-amber-700 text-amber-800 transition-all duration-500 group-hover:w-full"></span>
-          </button>
-        </div>
+       <div className="mt-24 mb-20 pl-7 ml-10">
+  <motion.h1
+    initial={{ y: -50, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    transition={{ duration: 1, ease: "easeOut" }}
+    className="font-space-grotesk text-3xl md:text-4xl lg:text-5xl leading-tight"
+  >
+    Health Care & <br /> Beauty Salon
+  </motion.h1>
+
+  <button
+    className="relative overflow-hidden px-6 md:px-10 py-3 rounded border bg-white/30 border-white/60 hover:text-white transition-all duration-500 group text-sm md:text-base mt-10"
+  >
+    <span className="relative z-10">
+      <Link href="signup">Demo</Link>
+    </span>
+    <span className="absolute left-0 top-0 h-full w-0 bg-amber-700 transition-all duration-500 group-hover:w-full"></span>
+  </button>
+</div>
+
       </div>
       {/* <SuperFeatures /> */}
       <KeyFeatures />

@@ -46,13 +46,13 @@ export default function StaffLogin() {
       initial={{ y: "-100%" }}
       animate={{ y: 0 }}
       transition={{ duration: 1, ease: "easeOut" }}
-      className="relative h-100 bg-pink-400 flex items-center justify-center"
+      className="relative h-[600px] bg-pink-400 flex items-center justify-center"
       style={{
         borderBottomLeftRadius: "40% 40%",
         borderBottomRightRadius: "40% 40%",
       }}
     >
-       <div className="absolute top-80 left-220 transform -translate-x-1/2 -translate-y-1/4 z-20">
+       <div className="absolute top-[320px] left-[880px] transform -translate-x-1/2 -translate-y-1/4 z-20">
   <Image 
     src={staff} 
     alt="Staff" 
@@ -66,7 +66,7 @@ export default function StaffLogin() {
       <motion.form
        onSubmit={handleSubmit}
         action=""
-        className="absolute top-15 w-full justify-center align-center max-w-md p-9 sm:p-10 flex flex-col  border border-white/20 rounded-xl bg-white/30 backdrop-blur-md shadow-lg"
+        className="relative w-full justify-center align-center max-w-md p-9 sm:p-10 flex flex-col border border-white/20 rounded-xl bg-white/30 backdrop-blur-md shadow-lg"
       >
         <div className="items-center mt-5">
           <h2 className="text-3xl font-bold drop-shadow-lg  text-pink-700 text-center mb-1">
@@ -86,7 +86,7 @@ export default function StaffLogin() {
             id="email"
             value={staffLoginForm.email}
             onChange={handleChange}
-            className="pl-10 mb-2  py-2 border rounded-md border-pink-600 w-[350px]"
+            className="pl-10 mb-2 py-2 border rounded-md border-pink-600 w-full"
           />
           <Mail className="absolute left-3 top-11 transform -translate-y-1/2 w-5 h-5 text-pink-600" />
         </div>
@@ -104,7 +104,7 @@ export default function StaffLogin() {
             name="password"
            value={staffLoginForm.password}
             onChange={handleChange}
-            className="pl-10 mb-2  py-2 border rounded-md border-pink-600 w-[350px]"
+            className="pl-10 mb-2 py-2 border rounded-md border-pink-600 w-full"
           />
           <Lock className="absolute left-3 top-11 transform -translate-y-1/2 w-5 h-5 text-pink-600" />
         </div>
@@ -121,7 +121,7 @@ export default function StaffLogin() {
           </p>
         </div>
 
-        <button type="submit" className="relative overflow-hidden px-7 py-2 bg-pink-200/30w-full bg-gradient-to-r from-pink-700 to-pink-500 text-white font-semibold rounded-full hover:opacity-90 transition duration-300 hover:text-pink-100 group">
+        <button type="submit" className="relative overflow-hidden px-7 py-2 w-full bg-gradient-to-r from-pink-700 to-pink-500 text-white font-semibold rounded-full hover:opacity-90 transition duration-300 hover:text-pink-100 group">
           <span className="relative z-10">
             Login
           </span>

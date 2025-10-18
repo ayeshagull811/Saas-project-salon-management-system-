@@ -58,26 +58,26 @@ export default function KeyFeatures() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
   return (
-    <motion.section className="py-20 -mb-8 relative">
+    <motion.section className="py-12 md:py-16 lg:py-20 -mb-8 relative">
       <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
-        className="max-w-6xl mx-auto px-4"
+        className="max-w-6xl mx-auto px-4 md:px-6"
       >
         <motion.h2
           initial={{ opacity: 0, y: -50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: false, amount: 0.3 }}
-          className="text-5xl font-extrabold text-center bg-gradient-to-r from-amber-700 to-amber-300 bg-clip-text text-transparent mb-16"
+          className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-center bg-gradient-to-r from-amber-700 to-amber-300 bg-clip-text text-transparent mb-8 md:mb-12 lg:mb-16 px-4"
           style={{ filter: "drop-shadow(0 4px 6px rgba(255, 182, 193, 0.8))" }}
         >
           Why Salons Love Us
         </motion.h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {features.map((feature, index) => (
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -85,13 +85,13 @@ export default function KeyFeatures() {
             transition={{ duration: 0.6 }}
             viewport={{ once: false, amount: 0.3 }}
             key={index}
-            className="bg-white border border-amber-200 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:border-amber-400"
+            className="bg-white border border-amber-200 p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:border-amber-400"
           >
-            <feature.icon className="w-14 h-14 text-amber-500 mb-6" />
-            <motion.h3 className="font-semibold text-xl mb-3">
+            <feature.icon className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 text-amber-500 mb-4 md:mb-6" />
+            <motion.h3 className="font-semibold text-lg md:text-xl mb-3">
               {feature.title}
             </motion.h3>
-            <motion.p className="text-gray-600 text-base">
+            <motion.p className="text-gray-600 text-sm md:text-base leading-relaxed">
               {feature.desc}
             </motion.p>
           </motion.div>

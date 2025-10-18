@@ -121,9 +121,9 @@ Walk out with nails that turn heads.`,
 
 
   return (
-    <section className="py-20 relative">
-      <div className="text-center mb-16">
-        <h2 className="text-5xl font-extrabold bg-gradient-to-r from-amber-700 to-amber-300 bg-clip-text text-transparent mb-8"
+    <section className="py-12 md:py-16 lg:py-20 relative">
+      <div className="text-center mb-8 md:mb-12 lg:mb-16 px-4">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold bg-gradient-to-r from-amber-700 to-amber-300 bg-clip-text text-transparent mb-4 md:mb-6 lg:mb-8"
           style={{ filter: "drop-shadow(0 4px 6px rgba(255, 182, 193, 0.8))" }}>
           Our Services
         </h2>
@@ -150,12 +150,12 @@ Walk out with nails that turn heads.`,
       >
         {services.map((service, index) => (
           <SwiperSlide key={index}>
-            <div className="bg-white border border-amber-200 h-[350px] p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:border-amber-400 text-center flex flex-col">
-              <div className="flex justify-center mb-4">
+            <div className="bg-white border border-amber-200 h-[320px] md:h-[350px] p-4 md:p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:border-amber-400 text-center flex flex-col">
+              <div className="flex justify-center mb-3 md:mb-4">
                 <service.icon />
               </div>
-              <h3 className="font-semibold text-amber-600 text-xl mb-4">{service.title}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed flex-grow">{service.desc}</p>
+              <h3 className="font-semibold text-amber-600 text-lg md:text-xl mb-3 md:mb-4">{service.title}</h3>
+              <p className="text-gray-600 text-xs md:text-sm leading-relaxed flex-grow">{service.desc}</p>
             </div>
           </SwiperSlide>
         ))}
