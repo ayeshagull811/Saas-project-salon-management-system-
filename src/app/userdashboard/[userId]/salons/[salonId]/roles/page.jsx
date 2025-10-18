@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Plus, Edit2, Trash2, Users, Shield, X, Check } from "lucide-react";
+import { Plus, Edit2, Trash2, Shield, X } from "lucide-react";
 import { useParams } from "next/navigation";
 import axios from "axios";
 
@@ -17,7 +17,7 @@ export default function RolesPermissionsPage() {
   const token =
     typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
-  // ✅ Fetch Roles (clean + correct)
+  // ✅ Fetch Roles (filtered, excludes Owner)
   const fetchRoles = async () => {
     try {
       setLoading(true);
@@ -34,19 +34,25 @@ export default function RolesPermissionsPage() {
         withCredentials: true,
       });
 
-      console.log("✅ Roles fetched:", res.data);
-      setRoles(res.data);
+      // ✅ Filter out "Owner" role (case-insensitive)
+      const filtered = res.data.filter(
+        (role) => role.name?.toLowerCase() !== "owner"
+      );
+
+      console.log("✅ Filtered roles (excluding Owner):", filtered);
+      setRoles(filtered);
     } catch (err) {
       console.error("❌ Error fetching roles:", err);
       setError(
-        err.response?.data?.message || "Failed to fetch roles. Please try again."
+        err.response?.data?.message ||
+          "Failed to fetch roles. Please try again."
       );
     } finally {
       setLoading(false);
     }
   };
 
-  // ✅ Fetch Permissions (clean + correct)
+  // ✅ Fetch Permissions
   const fetchPermissions = async () => {
     try {
       console.log("🔍 Fetching permissions...");
@@ -70,12 +76,13 @@ export default function RolesPermissionsPage() {
 
   // ✅ Create Role
   const createRole = async () => {
+    if (!newRole.trim()) return alert("Please enter a role name.");
     try {
       const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/role/createrole`;
       const res = await axios.post(
         apiUrl,
         {
-          name: newRole,
+          name: newRole.trim(),
           permissionIds: selectedPermissions,
           salonId: salonId,
         },
@@ -95,10 +102,11 @@ export default function RolesPermissionsPage() {
       fetchRoles();
     } catch (err) {
       console.error("❌ Error creating role:", err);
+      alert("Failed to create role. Please try again.");
     }
   };
 
-  // ✅ Handle checkbox toggle
+  // ✅ Handle permission toggle
   const handlePermissionToggle = (permId) => {
     setSelectedPermissions((prev) =>
       prev.includes(permId)
@@ -115,33 +123,29 @@ export default function RolesPermissionsPage() {
   }, [salonId]);
 
   return (
-    <div className="p-4 md:p-6 space-y-6 md:space-y-8 bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen">
-      <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#cf9060] to-[#e1a577] bg-clip-text text-transparent text-center md:text-left">
+    <div className="p-4 md:p-6 space-y-6 bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen">
+      <h1 className="text-2xl md:text-3xl font-bold text-center md:text-left bg-gradient-to-r from-[#cf9060] to-[#e1a577] bg-clip-text text-transparent">
         Roles Management
       </h1>
 
       {/* Roles Table */}
       <div className="bg-white shadow-xl rounded-2xl overflow-hidden border border-slate-200">
-        <div className="bg-gradient-to-r from-blue-50 to-purple-50 px-4 md:px-6 py-4 md:py-5 border-b border-slate-200">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            <div>
-              <h2 className="text-lg md:text-xl font-semibold text-[#926848] flex items-center gap-2 md:gap-3">
-                <div className="p-2 bg-[#926848] rounded-lg">
-                  <Shield className="w-4 h-4 md:w-5 md:h-5 text-white" />
-                </div>
-                <span>Roles Management</span>
-              </h2>
-              <p className="text-slate-600 text-xs md:text-sm mt-1">
-                Manage user roles and permissions
-              </p>
-            </div>
-            <button
-              className="bg-gradient-to-r from-[#926848] to-[#96745a] hover:from-[#bf9a7d] hover:to-[#cd9f7c] text-white px-4 md:px-6 py-2 md:py-3 rounded-xl flex items-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-sm md:text-base"
-              onClick={() => setShowModal(true)}
-            >
-              <Plus className="w-4 h-4" /> Add Role
-            </button>
+        <div className="bg-gradient-to-r from-blue-50 to-purple-50 px-4 md:px-6 py-4 md:py-5 border-b border-slate-200 flex justify-between items-center flex-wrap gap-3">
+          <div>
+            <h2 className="text-lg md:text-xl font-semibold text-[#926848] flex items-center gap-2">
+              <Shield className="w-5 h-5 text-[#926848]" />
+              Roles Management
+            </h2>
+            <p className="text-slate-600 text-xs mt-1">
+              Manage user roles and permissions
+            </p>
           </div>
+          <button
+            className="bg-gradient-to-r from-[#926848] to-[#a07455] text-white px-5 py-2 rounded-xl flex items-center gap-2 transition-all hover:shadow-lg"
+            onClick={() => setShowModal(true)}
+          >
+            <Plus className="w-4 h-4" /> Add Role
+          </button>
         </div>
 
         <div className="overflow-x-auto">
@@ -181,12 +185,12 @@ export default function RolesPermissionsPage() {
                         ))
                       : "No permissions"}
                   </td>
-                  <td className="px-4 py-3">
+                  <td className="px-4 py-3 flex gap-2">
                     <button className="text-[#926848] hover:text-blue-700">
-                      <Edit2 className="w-4 h-4 inline" />
+                      <Edit2 className="w-4 h-4" />
                     </button>
-                    <button className="text-red-600 hover:text-red-800 ml-2">
-                      <Trash2 className="w-4 h-4 inline" />
+                    <button className="text-red-600 hover:text-red-800">
+                      <Trash2 className="w-4 h-4" />
                     </button>
                   </td>
                 </tr>
