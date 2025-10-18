@@ -1,6 +1,7 @@
-import { CheckCircle, Clock, ListChecks, XCircle } from "lucide-react";
+"use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { CheckCircle, Clock, ListChecks, XCircle } from "lucide-react";
 
 export default function Cards({ salonId }) {
   const [counts, setCounts] = useState({
@@ -17,21 +18,17 @@ export default function Cards({ salonId }) {
         const res = await axios.get(
           `https://backend-salon-production.up.railway.app/appointment/getappointment/${salonId}`,
           {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+            headers: { Authorization: `Bearer ${token}` },
           }
         );
 
         const appointments = res.data;
-
         setCounts({
           total: appointments.length,
           completed: appointments.filter(a => a.status === "completed").length,
           pending: appointments.filter(a => a.status === "pending").length,
           cancelled: appointments.filter(a => a.status === "cancelled").length,
         });
-
       } catch (err) {
         console.error("Error fetching appointments:", err);
       }
