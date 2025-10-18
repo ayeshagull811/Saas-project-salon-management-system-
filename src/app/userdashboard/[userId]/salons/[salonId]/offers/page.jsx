@@ -61,7 +61,7 @@ export default function OffersPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 to-slate-900 relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden">
       {/* Animated Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#926848]/20 rounded-full blur-3xl animate-pulse"></div>
@@ -72,7 +72,7 @@ export default function OffersPage() {
       <div className="container mx-auto px-4 py-12 relative z-10">
         {/* Header */}
         <header className="text-center mb-16 animate-fade-in-down">
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-[#926848] via-[#d4a373] to-[#926848] bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#926848] via-[#d4a373] to-[#926848] bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]">
             ✨ SPECIAL OFFERS ✨
           </h1>
           <p className="text-xl md:text-2xl text-[#d4a373] drop-shadow-[0_0_10px_rgba(146,104,72,0.5)]">
@@ -97,11 +97,11 @@ export default function OffersPage() {
                   {offer.discount}
                 </span>
 
-                <h2 className="text-3xl font-bold mb-4 text-white relative z-10">
+                <h2 className="text-2xl font-bold mb-4 text-white relative z-10">
                   {offer.title}
                 </h2>
                 
-                <div className="text-5xl font-bold text-white relative z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+                <div className="text-4xl font-bold text-white relative z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
                   Rs. {offer.price.toLocaleString()}
                   <span className="text-xl line-through opacity-70 ml-3">
                     Rs. {offer.originalPrice.toLocaleString()}
