@@ -69,7 +69,7 @@ console.log("change password",changePasswordForm);
      initial={{ y: "-100%" }}
       animate={{ y: 0 }}
       transition={{ duration: 1, ease: "easeOut" }}
-      className="relative h-100 bg-pink-400 flex items-center justify-center"
+      className="relative h-100 bg-amber-700 flex items-center justify-center"
       style={{
         borderBottomLeftRadius: "40% 40%",
         borderBottomRightRadius: "40% 40%",
@@ -83,14 +83,14 @@ console.log("change password",changePasswordForm);
                className="drop-shadow-lg rotate-7"  
              />
            </div>
-           <div className="absolute top-10 inset-0 bg-pink-400 opacity-30 rounded-b-[40%]" />
+           <div className="absolute top-10 inset-0 bg-amber-700 opacity-30 rounded-b-[40%]" />
            <motion.form 
            onSubmit={handleSubmit}
         action=""
-        className="absolute top-15 w-full justify-center align-center max-w-md p-8 text-pink-700 sm:p-10 flex flex-col  border border-white/20 rounded-xl bg-white/30 backdrop-blur-md shadow-lg"
+        className="absolute top-15 w-full justify-center align-center max-w-md p-8 text-amber-700 sm:p-10 flex flex-col  border border-white/20 rounded-xl bg-white/30 backdrop-blur-md shadow-lg"
       >
             <div className="flex justify-center items-center mt-5">
-      <h2 className="text-2xl font-bold mb-6 text-center text-pink-600">
+      <h2 className="text-2xl font-bold mb-6 text-center text-amber-600">
         Change Password
       </h2>
       </div>
@@ -141,11 +141,11 @@ console.log("change password",changePasswordForm);
           />
         </div>
 
-       <button type="submit" className="relative overflow-hidden px-7 py-2 bg-pink-200/30w-full bg-gradient-to-r from-pink-700 to-pink-500 text-white font-semibold rounded-full hover:opacity-90 transition duration-300 hover:text-pink-100 group">
+       <button type="submit" className="relative overflow-hidden px-7 py-2 w-full bg-gradient-to-r from-amber-700 to-amber-600 text-white font-semibold rounded-full hover:opacity-90 transition duration-300 hover:text-amber-100 group">
           <span className="relative z-10">
-            <Link href="admindashboard">Login</Link>
+            Change Password
           </span>
-          <span className="absolute left-0 top-0 h-full w-0 bg-pink-400 text-pink-700 transition-all duration-500 group-hover:w-full"></span>
+          <span className="absolute left-0 top-0 h-full w-0 bg-amber-800 text-amber-700 transition-all duration-500 group-hover:w-full"></span>
         </button>
       
            </motion.form>

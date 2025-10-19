@@ -46,7 +46,7 @@ export default function StaffLogin() {
       initial={{ y: "-100%" }}
       animate={{ y: 0 }}
       transition={{ duration: 1, ease: "easeOut" }}
-      className="relative h-[600px] bg-pink-400 flex items-center justify-center"
+      className="relative h-[600px] bg-amber-700 flex items-center justify-center"
       style={{
         borderBottomLeftRadius: "40% 40%",
         borderBottomRightRadius: "40% 40%",
@@ -62,20 +62,20 @@ export default function StaffLogin() {
   />
 </div>
 
-      <div className="absolute top-10 inset-0 bg-pink-400 opacity-30 rounded-b-[40%]" />
+      <div className="absolute top-10 inset-0 bg-amber-700 opacity-30 rounded-b-[40%]" />
       <motion.form
        onSubmit={handleSubmit}
         action=""
         className="relative w-full justify-center align-center max-w-md p-9 sm:p-10 flex flex-col border border-white/20 rounded-xl bg-white/30 backdrop-blur-md shadow-lg"
       >
         <div className="items-center mt-5">
-          <h2 className="text-3xl font-bold drop-shadow-lg  text-pink-700 text-center mb-1">
-            Welcome 
+          <h2 className="text-3xl font-bold drop-shadow-lg  text-amber-700 text-center mb-1">
+            Welcome
           </h2>
-          <p className=" drop-shadow-lg  text-pink-600/60 text-center mb-5">login for staff members</p>
+          <p className=" drop-shadow-lg  text-amber-600/60 text-center mb-5">login for staff members</p>
         </div>
         <div className="relative ">
-          <label htmlFor="email" className="text-sm font-medium text-pink-800">
+          <label htmlFor="email" className="text-sm font-medium text-amber-800">
             Email
           </label>
           <br />
@@ -86,14 +86,14 @@ export default function StaffLogin() {
             id="email"
             value={staffLoginForm.email}
             onChange={handleChange}
-            className="pl-10 mb-2 py-2 border rounded-md border-pink-600 w-full"
+            className="pl-10 mb-2 py-2 border rounded-md border-amber-600 w-full"
           />
-          <Mail className="absolute left-3 top-11 transform -translate-y-1/2 w-5 h-5 text-pink-600" />
+          <Mail className="absolute left-3 top-11 transform -translate-y-1/2 w-5 h-5 text-amber-600" />
         </div>
         <div className="relative ">
           <label
             htmlFor="password"
-            className="text-sm font-medium text-pink-800"
+            className="text-sm font-medium text-amber-800"
           >
             Password
           </label>
@@ -104,28 +104,28 @@ export default function StaffLogin() {
             name="password"
            value={staffLoginForm.password}
             onChange={handleChange}
-            className="pl-10 mb-2 py-2 border rounded-md border-pink-600 w-full"
+            className="pl-10 mb-2 py-2 border rounded-md border-amber-600 w-full"
           />
-          <Lock className="absolute left-3 top-11 transform -translate-y-1/2 w-5 h-5 text-pink-600" />
+          <Lock className="absolute left-3 top-11 transform -translate-y-1/2 w-5 h-5 text-amber-600" />
         </div>
         <div className="flex justify-between items-center text-sm py-3">
           <div className="flex items-center gap-2">
-            <input type="checkbox" id="checkbox" className="accent-pink-400" />
+            <input type="checkbox" id="checkbox" className="accent-amber-400" />
             <br />
-            <label htmlFor="checkbox" className="text-pink-700">
+            <label htmlFor="checkbox" className="text-amber-700">
               Remember me
             </label>
           </div>
-          <p className="text-pink-500 hover:underline cursor-pointer">
+          <p className="text-amber-500 hover:underline cursor-pointer">
             forget passward
           </p>
         </div>
 
-        <button type="submit" className="relative overflow-hidden px-7 py-2 w-full bg-gradient-to-r from-pink-700 to-pink-500 text-white font-semibold rounded-full hover:opacity-90 transition duration-300 hover:text-pink-100 group">
+        <button type="submit" className="relative overflow-hidden px-7 py-2 w-full bg-gradient-to-r from-amber-700 to-amber-600 text-white font-semibold rounded-full hover:opacity-90 transition duration-300 hover:text-amber-100 group">
           <span className="relative z-10">
             Login
           </span>
-          <span className="absolute left-0 top-0 h-full w-0 bg-pink-400 text-pink-700 transition-all duration-500 group-hover:w-full"></span>
+          <span className="absolute left-0 top-0 h-full w-0 bg-amber-800 text-amber-700 transition-all duration-500 group-hover:w-full"></span>
         </button>
   
       </motion.form>

@@ -72,7 +72,6 @@ export default function KeyFeatures() {
           transition={{ duration: 0.6 }}
           viewport={{ once: false, amount: 0.3 }}
           className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-center bg-gradient-to-r from-amber-700 to-amber-300 bg-clip-text text-transparent mb-8 md:mb-12 lg:mb-16 px-4"
-          style={{ filter: "drop-shadow(0 4px 6px rgba(255, 182, 193, 0.8))" }}
         >
           Why Salons Love Us
         </motion.h2>
