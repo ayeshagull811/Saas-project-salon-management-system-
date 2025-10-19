@@ -87,7 +87,7 @@ localStorage.setItem("token", res.data.token);
         // initial={{ y: "-100%" }}
         // animate={{ y: 0 }}
         // transition={{ duration: 1, ease: "easeOut" }}
-        className="relative h-[600px] bg-amber-700 flex items-center justify-center"
+        className="relative h-[600px] bg-pink-400 flex items-center justify-center"
         style={{
           borderBottomLeftRadius: "40% 40%",
           borderBottomRightRadius: "40% 40%",
@@ -102,7 +102,7 @@ localStorage.setItem("token", res.data.token);
             className="drop-shadow-lg rotate-7"
           />
         </div> */}
-        <div className="absolute top-10 inset-0 bg-amber-700 opacity-30 rounded-b-[40%]" />
+        <div className="absolute top-10 inset-0 bg-pink-400 opacity-30 rounded-b-[40%]" />
         <motion.form
           onSubmit={handleSubmit}
           initial={{ scale: 0, opacity: 0 }}

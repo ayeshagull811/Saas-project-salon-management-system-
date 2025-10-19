@@ -181,12 +181,12 @@ export default function Sidebar({ onClose }) {
     //     },
     //   ],
     // },
-    {
-      name: "Offers",
-      icon: Tag,
-      path: `/userdashboard/${userId}/salons/${salonId}/offers`,
-      key: "offers",
-    },
+    // {
+    //   name: "Offers",
+    //   icon: Tag,
+    //   path: `/userdashboard/${userId}/salons/${salonId}/offers`,
+    //   key: "offers",
+    // },
     // {
     //   name: "Reports",
     //   icon: BarChart,
