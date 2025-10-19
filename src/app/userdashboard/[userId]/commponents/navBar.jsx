@@ -1,5 +1,5 @@
 "use client";
-import { Bell, Plus, User } from "lucide-react";
+import { Bell, Plus, User, Menu } from "lucide-react";
 import { FaStore } from "react-icons/fa";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
@@ -41,7 +41,13 @@ export default function NavBar({ onMenuClick }) {
     <nav className="bg-transparent">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          <div></div>
+          {/* Hamburger Menu for Mobile */}
+          <button
+            onClick={onMenuClick}
+            className="lg:hidden p-2 text-amber-600 hover:bg-amber-100 rounded-full"
+          >
+            <Menu className="h-6 w-6" />
+          </button>
 
           <div className="flex items-center space-x-4 md:space-x-6">
             {/* ✅ Add Salon Button */}
