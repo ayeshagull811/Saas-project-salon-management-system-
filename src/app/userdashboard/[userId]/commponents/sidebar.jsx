@@ -21,7 +21,7 @@ import {
 import { useParams } from "next/navigation";
 import Link from "next/link";
 
-export default function Sidebar() {
+export default function Sidebar({ onClose }) {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const { userId, salonId } = useParams();
   const [isOpen, setIsOpen] = useState(true);
@@ -232,7 +232,7 @@ export default function Sidebar() {
     <div className="flex h-screen">
       <div
         className={`bg-[#b6845f] text-white flex flex-col transition-all duration-300 ${
-          isOpen ? "w-60" : "w-14"
+          isOpen ? "w-full lg:w-60" : "w-14 lg:w-14"
         }`}
       >
         {/* Header */}

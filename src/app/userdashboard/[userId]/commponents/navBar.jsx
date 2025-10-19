@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState, useRef } from "react";
 
-export default function NavBar() {
+export default function NavBar({ onMenuClick }) {
   const params = useParams();
   const router = useRouter();
   const userId = params.userId;
@@ -43,7 +43,7 @@ export default function NavBar() {
         <div className="flex justify-between items-center h-16">
           <div></div>
 
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-4 md:space-x-6">
             {/* ✅ Add Salon Button */}
             <Link
               href={`/userdashboard/${userId}/salons/addsalon`}

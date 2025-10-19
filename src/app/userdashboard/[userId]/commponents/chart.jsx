@@ -14,7 +14,7 @@ export default function AppointmentPieChart() {
   return (
     <div className="bg-white rounded-xl shadow p-6 h-auto">
       <h2 className="text-lg font-bold mb-4  text-amber-800">Appointment Status</h2>
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="100%" height={300} className="min-h-[200px] lg:min-h-[300px]">
         <PieChart>
           <Pie
             data={data}

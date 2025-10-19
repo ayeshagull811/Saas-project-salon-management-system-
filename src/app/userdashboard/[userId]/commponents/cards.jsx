@@ -38,7 +38,7 @@ export default function Cards({ salonId }) {
   }, [salonId]);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 p-4 md:p-6">
       <Card title="Total" count={counts.total} icon={<ListChecks className="w-5 h-5 text-blue-500" />} bg="bg-blue-200/50" />
       <Card title="Completed" count={counts.completed} icon={<CheckCircle className="w-5 h-5 text-green-500" />} bg="bg-green-200/50" />
       <Card title="Pending" count={counts.pending} icon={<Clock className="w-6 h-6 text-yellow-500" />} bg="bg-amber-200/50" />
