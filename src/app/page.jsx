@@ -48,7 +48,7 @@ export default function Home() {
           initial={{ y: "-100%" }}
           animate={{ y: 0 }}
           transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-          className="absolute inset-0  bg-[#CA9871]  -z-10 shadow-xl"
+          className="absolute inset-0 bg-amber-700 -z-10 shadow-xl"
         />
 
        <div className="mt-24 mb-20 pl-7 ml-10">

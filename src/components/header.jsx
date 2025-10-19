@@ -21,7 +21,7 @@ export default function Header() {
         </div>
 
         <button
-          className="relative overflow-hidden px-3 md:px-4 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-lg md:rounded-xl border-2 border-[#CA9871]/60 bg-[#CA9871]/20 hover:bg-[#CA9871]/40 hover:text-white text-[#a36739] transition-all duration-300 group text-sm md:text-base font-medium shadow-sm hover:shadow-md"
+          className="relative overflow-hidden px-3 md:px-4 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-lg md:rounded-xl border-2 border-amber-700/60 bg-amber-700/20 hover:bg-amber-700/40 hover:text-white text-amber-800 transition-all duration-300 group text-sm md:text-base font-medium shadow-sm hover:shadow-md"
         >
           <span className="relative z-10 flex items-center gap-1">
             <Link href="signup" className="flex items-center gap-1">

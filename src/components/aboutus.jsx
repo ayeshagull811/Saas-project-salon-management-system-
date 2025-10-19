@@ -6,7 +6,7 @@ import imgaes from "../assets/img3.jpeg";
 
 export default function AboutSection() {
   return (
-    <section className="bg-[#CA9871] relative rounded-4xl h-[400px] md:h-[450px] my-12 md:my-16 lg:my-20">
+    <section className="bg-amber-700 relative rounded-4xl h-[400px] md:h-[450px] my-12 md:my-16 lg:my-20">
       <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-10 items-center">
           <div className="px-4 md:px-0">

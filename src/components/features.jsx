@@ -85,7 +85,7 @@ export default function KeyFeatures() {
             transition={{ duration: 0.6 }}
             viewport={{ once: false, amount: 0.3 }}
             key={index}
-            className="bg-white border border-amber-200 p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:border-amber-400"
+          className="bg-white border border-amber-200 p-6 md:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:border-amber-400 hover:bg-amber-50"
           >
             <feature.icon className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 text-amber-500 mb-4 md:mb-6" />
             <motion.h3 className="font-semibold text-lg md:text-xl mb-3">

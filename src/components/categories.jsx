@@ -150,7 +150,7 @@ Walk out with nails that turn heads.`,
       >
         {services.map((service, index) => (
           <SwiperSlide key={index}>
-            <div className="bg-white border border-amber-200 h-[320px] md:h-[350px] p-4 md:p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:border-amber-400 text-center flex flex-col">
+            <div className="bg-white border border-amber-200 h-[320px] md:h-[350px] p-4 md:p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:border-amber-400 hover:bg-amber-50 text-center flex flex-col">
               <div className="flex justify-center mb-3 md:mb-4">
                 <service.icon />
               </div>
