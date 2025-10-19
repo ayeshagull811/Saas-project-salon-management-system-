@@ -87,7 +87,7 @@ localStorage.setItem("token", res.data.token);
         // initial={{ y: "-100%" }}
         // animate={{ y: 0 }}
         // transition={{ duration: 1, ease: "easeOut" }}
-        className="relative h-[600px] bg-pink-400 flex items-center justify-center"
+        className="relative h-[600px] bg-[#CA9871] flex items-center justify-center"
         style={{
           borderBottomLeftRadius: "40% 40%",
           borderBottomRightRadius: "40% 40%",
@@ -102,7 +102,7 @@ localStorage.setItem("token", res.data.token);
             className="drop-shadow-lg rotate-7"
           />
         </div> */}
-        <div className="absolute top-10 inset-0 bg-pink-400 opacity-30 rounded-b-[40%]" />
+        <div className="absolute top-10 inset-0 bg-[#CA9871] opacity-30 rounded-b-[40%]" />
         <motion.form
           onSubmit={handleSubmit}
           initial={{ scale: 0, opacity: 0 }}
@@ -112,14 +112,14 @@ localStorage.setItem("token", res.data.token);
           className="relative w-full justify-center align-center max-w-md p-8 sm:p-10 flex flex-col border border-white/20 rounded-xl bg-white/30 backdrop-blur-md shadow-lg"
         >
           <div className="flex justify-center items-center mt-5">
-            <h2 className="text-3xl font-bold drop-shadow-lg  text-amber-700 text-center mb-5">
+            <h2 className="text-3xl font-bold drop-shadow-lg  text-[#CA9871] text-center mb-5">
               Welcome Back
             </h2>
           </div>
           <div className="relative ">
             <label
               htmlFor="email"
-              className="text-sm font-medium text-amber-800"
+              className="text-sm font-medium text-[#CA9871]"
             >
               Email
             </label>
@@ -131,14 +131,14 @@ localStorage.setItem("token", res.data.token);
               id="email"
               onChange={handleChange}
               value={loginForm.email}
-              className="pl-10 mb-2 py-2 border rounded-md border-amber-600 w-full"
+              className="pl-10 mb-2 py-2 border rounded-md border-[#CA9871] w-full"
             />
-            <Mail className="absolute left-3 top-11 transform -translate-y-1/2 w-5 h-5 text-amber-600" />
+            <Mail className="absolute left-3 top-11 transform -translate-y-1/2 w-5 h-5 text-[#CA9871]" />
           </div>
           <div className="relative ">
             <label
               htmlFor="password"
-              className="text-sm font-medium text-amber-800"
+              className="text-sm font-medium text-[#CA9871]"
             >
               Password
             </label>
@@ -149,9 +149,9 @@ localStorage.setItem("token", res.data.token);
               name="password_hash"
               onChange={handleChange}
               value={loginForm.password_hash}
-              className="pl-10 mb-2 py-2 border rounded-md border-amber-600 w-full"
+              className="pl-10 mb-2 py-2 border rounded-md border-[#CA9871] w-full"
             />
-            <Lock className="absolute left-3 top-11 transform -translate-y-1/2 w-5 h-5 text-amber-600" />
+            <Lock className="absolute left-3 top-11 transform -translate-y-1/2 w-5 h-5 text-[#CA9871]" />
           </div>
           <div className="flex justify-between items-center text-sm py-3">
             <div className="flex items-center gap-2">
@@ -165,22 +165,22 @@ localStorage.setItem("token", res.data.token);
                 Remember me
               </label>
             </div>
-            <p className="text-amber-600 hover:underline cursor-pointer">
+            <p className="text-[#CA9871] hover:underline cursor-pointer">
               forget passward
             </p>
           </div>
 
           <button
             type="submit"
-            className="relative overflow-hidden px-7 py-2 w-full bg-gradient-to-r from-amber-700 to-amber-600 text-white font-semibold rounded-full hover:opacity-90 transition duration-300 hover:text-amber-100 group"
+            className="relative overflow-hidden px-7 py-2 w-full bg-gradient-to-r from-amber-700 to-[#CA9871] text-white font-semibold rounded-full hover:opacity-90 transition duration-300 hover:text-amber-100 group"
           >
             <span className="relative z-10">Login</span>
-            <span className="absolute left-0 top-0 h-full w-0 bg-amber-800 text-amber-700 transition-all duration-500 group-hover:w-full"></span>
+            <span className="absolute left-0 top-0 h-full w-0 bg-[#CA9871] text-amber-700 transition-all duration-500 group-hover:w-full"></span>
           </button>
           <div className="flex items-center justify-center gap-2 my-2">
-            <div className="flex-grow border-b border-amber-800"></div>
+            <div className="flex-grow border-b border-[#CA9871]"></div>
             <span className="text-amber-500 text-sm">Or</span>
-            <div className="flex-grow border-b border-amber-800"></div>
+            <div className="flex-grow border-b border-[#CA9871]"></div>
           </div>
           <div className="flex gap-2 items-center justify-center">
             <button className="rounded-full items-center border border-amber-400 hover:bg-amber-200 transition p-2">
@@ -197,11 +197,11 @@ localStorage.setItem("token", res.data.token);
               <FaFacebookF className="w-4 h-4" />
             </button>
           </div>
-          <div className="text-sm text-center text-amber-600 mt-4">
+          <div className="text-sm text-center text-[#CA9871] mt-4">
             Don't have an account?{" "}
             <Link
               href="signup"
-              className="text-amber-800 hover:underline font-medium"
+              className="text-[#CA9871] hover:underline font-medium"
             >
               Register
             </Link>

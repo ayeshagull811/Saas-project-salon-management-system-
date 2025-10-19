@@ -42,7 +42,7 @@ export default function SalonStaffForm() {
    password_hash: "",
     gender: "",
     salonId:"",
-     role: "employee",
+     role: "",
     confirmpassword: "",
   });
   console.log("salon data", formData);
@@ -159,7 +159,8 @@ useEffect(() => {
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Invalid email format";
     }
-    if (!formData.phonenumber.trim()) newErrors.phonenumber = "phonenumber number is required";
+    if (!formData.phonenumber.trim()) newErrors.phonenumber = "Phone number is required";
+    if (!formData.role) newErrors.role = "Please select a role";
     if (!formData.position) newErrors.position = "Please select a position";
     if (!formData.password_hash) newErrors.password_hash = "Password is required";
     if (!formData.department)
@@ -392,39 +393,31 @@ useEffect(() => {
 
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* <div>
+                <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Employee ID *
+                    Role *
                   </label>
-                  <input
-                    type="text"
-                    name="employeeId"
+                  <select
+                    name="role"
+                    value={formData.role}
+                    onChange={handleChange}
                     className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-[#926848] focus:border-transparent ${
-                      errors.employeeId ? "border-red-500" : "border-gray-300"
+                      errors.role ? "border-red-500" : "border-gray-300"
                     }`}
-                    placeholder="SAL001"
-                  />
-                  {errors.employeeId && (
+                  >
+                    <option value="">Select Role</option>
+                    {roles.map((r) => (
+                      <option key={r.id} value={r.id}>
+                        {r.name}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.role && (
                     <p className="text-red-500 text-sm mt-1">
-                      {errors.employeeId}
+                      {errors.role}
                     </p>
                   )}
-                </div> */}
-       <select
-  name="role"
-  value={formData.role}
-  onChange={handleChange}
-  className={`w-full px-3 border rounded-lg focus:ring-2 focus:ring-[#926848] focus:border-transparent ${
-    errors.role ? "border-red-500" : "border-gray-300"
-  }`}
->
-  <option value="">Select Role</option>
-  {roles.map((r) => (
-    <option key={r.id} value={r.id}>
-      {r.name}
-    </option>
-  ))}
-</select>
+                </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
